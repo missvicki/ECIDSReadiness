@@ -1,0 +1,616 @@
+Child DCN,Child MOSIS ID,DisabilityStatus,RefIDEADisabilityType
+0000000005,000005,Yes,Developmental Delay
+0000000007,000007,Yes,Speech or Language Impairment
+0000000023,000023,Yes,Visual Impairment
+0000000031,000031,Yes,Speech or Language Impairment
+0000000042,000042,Yes,Visual Impairment
+0000000045,000045,Yes,Speech or Language Impairment
+0000000048,000048,Yes,Orthopedic Impairment
+0000000050,000050,Yes,Orthopedic Impairment
+0000000056,000056,Yes,Multiple Disabilities
+0000000077,000077,Yes,Hearing Impairment
+0000000078,000078,Yes,Hearing Impairment
+0000000092,000092,Yes,Orthopedic Impairment
+0000000110,000110,Yes,Autism
+0000000113,000113,Yes,Multiple Disabilities
+0000000114,000114,Yes,Other Health Impairment
+0000000115,000115,Yes,Orthopedic Impairment
+0000000122,000122,Yes,Developmental Delay
+0000000127,000127,Yes,Orthopedic Impairment
+0000000129,000129,Yes,Speech or Language Impairment
+0000000132,000132,Yes,Speech or Language Impairment
+0000000139,000139,Yes,Autism
+0000000156,000156,Yes,Hearing Impairment
+0000000162,000162,Yes,Orthopedic Impairment
+0000000165,000165,Yes,Other Health Impairment
+0000000168,000168,Yes,Orthopedic Impairment
+0000000180,000180,Yes,Speech or Language Impairment
+0000000187,000187,Yes,Developmental Delay
+0000000192,000192,Yes,Hearing Impairment
+0000000198,000198,Yes,Other Health Impairment
+0000000199,000199,Yes,Hearing Impairment
+0000000201,000201,Yes,Other Health Impairment
+0000000207,000207,Yes,Visual Impairment
+0000000216,000216,Yes,Orthopedic Impairment
+0000000232,000232,Yes,Autism
+0000000234,000234,Yes,Multiple Disabilities
+0000000242,000242,Yes,Multiple Disabilities
+0000000243,000243,Yes,Other Health Impairment
+0000000262,000262,Yes,Multiple Disabilities
+0000000265,000265,Yes,Autism
+0000000292,000292,Yes,Visual Impairment
+0000000295,000295,Yes,Speech or Language Impairment
+0000000296,000296,Yes,Autism
+0000000305,000305,Yes,Developmental Delay
+0000000313,000313,Yes,Multiple Disabilities
+0000000314,000314,Yes,Speech or Language Impairment
+0000000316,000316,Yes,Other Health Impairment
+0000000331,000331,Yes,Hearing Impairment
+0000000333,000333,Yes,Hearing Impairment
+0000000337,000337,Yes,Developmental Delay
+0000000342,000342,Yes,Autism
+0000000345,000345,Yes,Hearing Impairment
+0000000365,000365,Yes,Multiple Disabilities
+0000000379,000379,Yes,Multiple Disabilities
+0000000394,000394,Yes,Hearing Impairment
+0000000395,000395,Yes,Orthopedic Impairment
+0000000401,000401,Yes,Orthopedic Impairment
+0000000403,000403,Yes,Visual Impairment
+0000000427,000427,Yes,Autism
+0000000429,000429,Yes,Visual Impairment
+0000000432,000432,Yes,Orthopedic Impairment
+0000000443,000443,Yes,Orthopedic Impairment
+0000000459,000459,Yes,Hearing Impairment
+0000000488,000488,Yes,Multiple Disabilities
+0000000503,000503,Yes,Developmental Delay
+0000000504,000504,Yes,Other Health Impairment
+0000000525,000525,Yes,Autism
+0000000527,000527,Yes,Visual Impairment
+0000000543,000543,Yes,Hearing Impairment
+0000000555,000555,Yes,Developmental Delay
+0000000559,000559,Yes,Developmental Delay
+0000000569,000569,Yes,Developmental Delay
+0000000572,000572,Yes,Hearing Impairment
+0000000584,000584,Yes,Multiple Disabilities
+0000000594,000594,Yes,Autism
+0000000609,000609,Yes,Orthopedic Impairment
+0000000619,000619,Yes,Hearing Impairment
+0000000622,000622,Yes,Other Health Impairment
+0000000627,000627,Yes,Multiple Disabilities
+0000000671,000671,Yes,Orthopedic Impairment
+0000000679,000679,Yes,Developmental Delay
+0000000697,000697,Yes,Speech or Language Impairment
+0000000728,000728,Yes,Other Health Impairment
+0000000731,000731,Yes,Hearing Impairment
+0000000738,000738,Yes,Multiple Disabilities
+0000000750,000750,Yes,Hearing Impairment
+0000000774,000774,Yes,Developmental Delay
+0000000775,000775,Yes,Hearing Impairment
+0000000783,000783,Yes,Speech or Language Impairment
+0000000785,000785,Yes,Hearing Impairment
+0000000816,000816,Yes,Multiple Disabilities
+0000000821,000821,Yes,Developmental Delay
+0000000829,000829,Yes,Autism
+0000000831,000831,Yes,Autism
+0000000837,000837,Yes,Multiple Disabilities
+0000000856,000856,Yes,Other Health Impairment
+0000000857,000857,Yes,Hearing Impairment
+0000000868,000868,Yes,Other Health Impairment
+0000000870,000870,Yes,Visual Impairment
+0000000897,000897,Yes,Speech or Language Impairment
+0000000904,000904,Yes,Developmental Delay
+0000000906,000906,Yes,Hearing Impairment
+0000000912,000912,Yes,Speech or Language Impairment
+0000000914,000914,Yes,Autism
+0000000926,000926,Yes,Developmental Delay
+0000000928,000928,Yes,Speech or Language Impairment
+0000000936,000936,Yes,Speech or Language Impairment
+0000000949,000949,Yes,Visual Impairment
+0000000967,000967,Yes,Other Health Impairment
+0000000969,000969,Yes,Developmental Delay
+0000000988,000988,Yes,Visual Impairment
+0000000991,000991,Yes,Visual Impairment
+0000000993,000993,Yes,Visual Impairment
+0000001003,001003,Yes,Speech or Language Impairment
+0000001014,001014,Yes,Speech or Language Impairment
+0000001016,001016,Yes,Autism
+0000001025,001025,Yes,Autism
+0000001034,001034,Yes,Multiple Disabilities
+0000001043,001043,Yes,Autism
+0000001062,001062,Yes,Hearing Impairment
+0000001071,001071,Yes,Hearing Impairment
+0000001072,001072,Yes,Developmental Delay
+0000001074,001074,Yes,Hearing Impairment
+0000001078,001078,Yes,Visual Impairment
+0000001079,001079,Yes,Autism
+0000001089,001089,Yes,Orthopedic Impairment
+0000001095,001095,Yes,Autism
+0000001104,001104,Yes,Orthopedic Impairment
+0000001107,001107,Yes,Visual Impairment
+0000001110,001110,Yes,Multiple Disabilities
+0000001128,001128,Yes,Hearing Impairment
+0000001144,001144,Yes,Developmental Delay
+0000001150,001150,Yes,Orthopedic Impairment
+0000001154,001154,Yes,Hearing Impairment
+0000001157,001157,Yes,Developmental Delay
+0000001173,001173,Yes,Other Health Impairment
+0000001177,001177,Yes,Speech or Language Impairment
+0000001184,001184,Yes,Visual Impairment
+0000001186,001186,Yes,Visual Impairment
+0000001201,001201,Yes,Orthopedic Impairment
+0000001210,001210,Yes,Speech or Language Impairment
+0000001223,001223,Yes,Developmental Delay
+0000001224,001224,Yes,Speech or Language Impairment
+0000001243,001243,Yes,Developmental Delay
+0000001247,001247,Yes,Developmental Delay
+0000001249,001249,Yes,Multiple Disabilities
+0000001267,001267,Yes,Other Health Impairment
+0000001287,001287,Yes,Autism
+0000001294,001294,Yes,Speech or Language Impairment
+0000001297,001297,Yes,Orthopedic Impairment
+0000001298,001298,Yes,Speech or Language Impairment
+0000001309,001309,Yes,Visual Impairment
+0000001325,001325,Yes,Orthopedic Impairment
+0000001351,001351,Yes,Autism
+0000001363,001363,Yes,Hearing Impairment
+0000001364,001364,Yes,Developmental Delay
+0000001366,001366,Yes,Multiple Disabilities
+0000001381,001381,Yes,Autism
+0000001386,001386,Yes,Visual Impairment
+0000001401,001401,Yes,Multiple Disabilities
+0000001419,001419,Yes,Developmental Delay
+0000001426,001426,Yes,Other Health Impairment
+0000001427,001427,Yes,Developmental Delay
+0000001443,001443,Yes,Hearing Impairment
+0000001444,001444,Yes,Multiple Disabilities
+0000001452,001452,Yes,Developmental Delay
+0000001473,001473,Yes,Visual Impairment
+0000001480,001480,Yes,Orthopedic Impairment
+0000001487,001487,Yes,Developmental Delay
+0000001497,001497,Yes,Hearing Impairment
+0000001536,001536,Yes,Visual Impairment
+0000001539,001539,Yes,Orthopedic Impairment
+0000001548,001548,Yes,Other Health Impairment
+0000001566,001566,Yes,Speech or Language Impairment
+0000001593,001593,Yes,Visual Impairment
+0000001597,001597,Yes,Hearing Impairment
+0000001603,001603,Yes,Multiple Disabilities
+0000001631,001631,Yes,Speech or Language Impairment
+0000001632,001632,Yes,Other Health Impairment
+0000001633,001633,Yes,Other Health Impairment
+0000001653,001653,Yes,Other Health Impairment
+0000001655,001655,Yes,Developmental Delay
+0000001660,001660,Yes,Autism
+0000001663,001663,Yes,Visual Impairment
+0000001673,001673,Yes,Other Health Impairment
+0000001676,001676,Yes,Hearing Impairment
+0000001678,001678,Yes,Multiple Disabilities
+0000001680,001680,Yes,Developmental Delay
+0000001697,001697,Yes,Autism
+0000001707,001707,Yes,Other Health Impairment
+0000001710,001710,Yes,Speech or Language Impairment
+0000001715,001715,Yes,Visual Impairment
+0000001723,001723,Yes,Hearing Impairment
+0000001728,001728,Yes,Visual Impairment
+0000001733,001733,Yes,Speech or Language Impairment
+0000001735,001735,Yes,Other Health Impairment
+0000001736,001736,Yes,Developmental Delay
+0000001743,001743,Yes,Speech or Language Impairment
+0000001750,001750,Yes,Autism
+0000001763,001763,Yes,Multiple Disabilities
+0000001797,001797,Yes,Multiple Disabilities
+0000001798,001798,Yes,Other Health Impairment
+0000001800,001800,Yes,Visual Impairment
+0000001816,001816,Yes,Hearing Impairment
+0000001831,001831,Yes,Visual Impairment
+0000001845,001845,Yes,Developmental Delay
+0000001850,001850,Yes,Autism
+0000001859,001859,Yes,Orthopedic Impairment
+0000001860,001860,Yes,Multiple Disabilities
+0000001866,001866,Yes,Visual Impairment
+0000001873,001873,Yes,Visual Impairment
+0000001875,001875,Yes,Other Health Impairment
+0000001881,001881,Yes,Hearing Impairment
+0000001890,001890,Yes,Other Health Impairment
+0000001895,001895,Yes,Hearing Impairment
+0000001903,001903,Yes,Hearing Impairment
+0000001908,001908,Yes,Developmental Delay
+0000001912,001912,Yes,Hearing Impairment
+0000001914,001914,Yes,Developmental Delay
+0000001915,001915,Yes,Hearing Impairment
+0000001916,001916,Yes,Developmental Delay
+0000001924,001924,Yes,Autism
+0000001932,001932,Yes,Hearing Impairment
+0000001939,001939,Yes,Speech or Language Impairment
+0000001941,001941,Yes,Other Health Impairment
+0000001942,001942,Yes,Speech or Language Impairment
+0000001944,001944,Yes,Autism
+0000001954,001954,Yes,Multiple Disabilities
+0000001956,001956,Yes,Speech or Language Impairment
+0000001963,001963,Yes,Orthopedic Impairment
+0000001982,001982,Yes,Other Health Impairment
+0000001984,001984,Yes,Orthopedic Impairment
+0000002006,002006,Yes,Visual Impairment
+0000002016,002016,Yes,Orthopedic Impairment
+0000002022,002022,Yes,Autism
+0000002028,002028,Yes,Orthopedic Impairment
+0000002031,002031,Yes,Visual Impairment
+0000002034,002034,Yes,Autism
+0000002043,002043,Yes,Autism
+0000002055,002055,Yes,Hearing Impairment
+0000002056,002056,Yes,Developmental Delay
+0000002062,002062,Yes,Autism
+0000002068,002068,Yes,Multiple Disabilities
+0000002072,002072,Yes,Speech or Language Impairment
+0000002090,002090,Yes,Orthopedic Impairment
+0000002093,002093,Yes,Other Health Impairment
+0000002100,002100,Yes,Developmental Delay
+0000002113,002113,Yes,Speech or Language Impairment
+0000002117,002117,Yes,Developmental Delay
+0000002157,002157,Yes,Orthopedic Impairment
+0000002158,002158,Yes,Orthopedic Impairment
+0000002171,002171,Yes,Speech or Language Impairment
+0000002181,002181,Yes,Hearing Impairment
+0000002198,002198,Yes,Multiple Disabilities
+0000002212,002212,Yes,Autism
+0000002226,002226,Yes,Orthopedic Impairment
+0000002230,002230,Yes,Orthopedic Impairment
+0000002231,002231,Yes,Multiple Disabilities
+0000002235,002235,Yes,Visual Impairment
+0000002236,002236,Yes,Multiple Disabilities
+0000002247,002247,Yes,Orthopedic Impairment
+0000002254,002254,Yes,Speech or Language Impairment
+0000002258,002258,Yes,Hearing Impairment
+0000002263,002263,Yes,Autism
+0000002264,002264,Yes,Orthopedic Impairment
+0000002272,002272,Yes,Autism
+0000002298,002298,Yes,Other Health Impairment
+0000002319,002319,Yes,Multiple Disabilities
+0000002321,002321,Yes,Other Health Impairment
+0000002322,002322,Yes,Orthopedic Impairment
+0000002334,002334,Yes,Hearing Impairment
+0000002335,002335,Yes,Autism
+0000002339,002339,Yes,Other Health Impairment
+0000002350,002350,Yes,Developmental Delay
+0000002364,002364,Yes,Hearing Impairment
+0000002366,002366,Yes,Orthopedic Impairment
+0000002369,002369,Yes,Speech or Language Impairment
+0000002371,002371,Yes,Other Health Impairment
+0000002372,002372,Yes,Developmental Delay
+0000002379,002379,Yes,Orthopedic Impairment
+0000002388,002388,Yes,Hearing Impairment
+0000002392,002392,Yes,Hearing Impairment
+0000002393,002393,Yes,Autism
+0000002394,002394,Yes,Speech or Language Impairment
+0000002395,002395,Yes,Multiple Disabilities
+0000002407,002407,Yes,Visual Impairment
+0000002421,002421,Yes,Autism
+0000002423,002423,Yes,Developmental Delay
+0000002427,002427,Yes,Developmental Delay
+0000002428,002428,Yes,Visual Impairment
+0000002472,002472,Yes,Orthopedic Impairment
+0000002473,002473,Yes,Autism
+0000002478,002478,Yes,Hearing Impairment
+0000002479,002479,Yes,Other Health Impairment
+0000002480,002480,Yes,Hearing Impairment
+0000002484,002484,Yes,Multiple Disabilities
+0000002486,002486,Yes,Speech or Language Impairment
+0000002488,002488,Yes,Multiple Disabilities
+0000002502,002502,Yes,Orthopedic Impairment
+0000002517,002517,Yes,Multiple Disabilities
+0000002519,002519,Yes,Multiple Disabilities
+0000002547,002547,Yes,Orthopedic Impairment
+0000002553,002553,Yes,Developmental Delay
+0000002558,002558,Yes,Hearing Impairment
+0000002562,002562,Yes,Autism
+0000002583,002583,Yes,Visual Impairment
+0000002585,002585,Yes,Visual Impairment
+0000002605,002605,Yes,Speech or Language Impairment
+0000002607,002607,Yes,Speech or Language Impairment
+0000002614,002614,Yes,Orthopedic Impairment
+0000002617,002617,Yes,Orthopedic Impairment
+0000002619,002619,Yes,Speech or Language Impairment
+0000002637,002637,Yes,Multiple Disabilities
+0000002640,002640,Yes,Autism
+0000002645,002645,Yes,Autism
+0000002650,002650,Yes,Developmental Delay
+0000002659,002659,Yes,Multiple Disabilities
+0000002666,002666,Yes,Developmental Delay
+0000002678,002678,Yes,Hearing Impairment
+0000002682,002682,Yes,Developmental Delay
+0000002694,002694,Yes,Visual Impairment
+0000002703,002703,Yes,Other Health Impairment
+0000002704,002704,Yes,Visual Impairment
+0000002711,002711,Yes,Autism
+0000002713,002713,Yes,Autism
+0000002720,002720,Yes,Speech or Language Impairment
+0000002724,002724,Yes,Orthopedic Impairment
+0000002727,002727,Yes,Speech or Language Impairment
+0000002733,002733,Yes,Hearing Impairment
+0000002735,002735,Yes,Speech or Language Impairment
+0000002745,002745,Yes,Speech or Language Impairment
+0000002756,002756,Yes,Autism
+0000002769,002769,Yes,Autism
+0000002777,002777,Yes,Developmental Delay
+0000002780,002780,Yes,Speech or Language Impairment
+0000002783,002783,Yes,Multiple Disabilities
+0000002790,002790,Yes,Developmental Delay
+0000002791,002791,Yes,Hearing Impairment
+0000002798,002798,Yes,Developmental Delay
+0000002800,002800,Yes,Visual Impairment
+0000002806,002806,Yes,Speech or Language Impairment
+0000002808,002808,Yes,Autism
+0000002823,002823,Yes,Orthopedic Impairment
+0000002826,002826,Yes,Hearing Impairment
+0000002840,002840,Yes,Developmental Delay
+0000002851,002851,Yes,Orthopedic Impairment
+0000002856,002856,Yes,Autism
+0000002859,002859,Yes,Hearing Impairment
+0000002867,002867,Yes,Other Health Impairment
+0000002883,002883,Yes,Hearing Impairment
+0000002886,002886,Yes,Developmental Delay
+0000002887,002887,Yes,Visual Impairment
+0000002888,002888,Yes,Developmental Delay
+0000002892,002892,Yes,Developmental Delay
+0000002898,002898,Yes,Developmental Delay
+0000002903,002903,Yes,Speech or Language Impairment
+0000002913,002913,Yes,Autism
+0000002914,002914,Yes,Other Health Impairment
+0000002915,002915,Yes,Speech or Language Impairment
+0000002920,002920,Yes,Multiple Disabilities
+0000002921,002921,Yes,Speech or Language Impairment
+0000002927,002927,Yes,Hearing Impairment
+0000002929,002929,Yes,Visual Impairment
+0000002931,002931,Yes,Autism
+0000002936,002936,Yes,Speech or Language Impairment
+0000002940,002940,Yes,Speech or Language Impairment
+0000002947,002947,Yes,Autism
+0000002954,002954,Yes,Speech or Language Impairment
+0000002958,002958,Yes,Developmental Delay
+0000002961,002961,Yes,Other Health Impairment
+0000002969,002969,Yes,Autism
+0000002970,002970,Yes,Developmental Delay
+0000002981,002981,Yes,Multiple Disabilities
+0000002982,002982,Yes,Developmental Delay
+0000002985,002985,Yes,Other Health Impairment
+0000002991,002991,Yes,Multiple Disabilities
+0000002997,002997,Yes,Orthopedic Impairment
+0000003012,003012,Yes,Hearing Impairment
+0000003015,003015,Yes,Multiple Disabilities
+0000003018,003018,Yes,Multiple Disabilities
+0000003024,003024,Yes,Autism
+0000003041,003041,Yes,Multiple Disabilities
+0000003046,003046,Yes,Autism
+0000003053,003053,Yes,Developmental Delay
+0000003073,003073,Yes,Autism
+0000003081,003081,Yes,Multiple Disabilities
+0000003090,003090,Yes,Visual Impairment
+0000003091,003091,Yes,Orthopedic Impairment
+0000003096,003096,Yes,Hearing Impairment
+0000003107,003107,Yes,Multiple Disabilities
+0000003112,003112,Yes,Orthopedic Impairment
+0000003115,003115,Yes,Speech or Language Impairment
+0000003118,003118,Yes,Developmental Delay
+0000003139,003139,Yes,Hearing Impairment
+0000003144,003144,Yes,Developmental Delay
+0000003145,003145,Yes,Other Health Impairment
+0000003148,003148,Yes,Other Health Impairment
+0000003154,003154,Yes,Multiple Disabilities
+0000003165,003165,Yes,Multiple Disabilities
+0000003177,003177,Yes,Multiple Disabilities
+0000003187,003187,Yes,Multiple Disabilities
+0000003188,003188,Yes,Hearing Impairment
+0000003206,003206,Yes,Multiple Disabilities
+0000003209,003209,Yes,Multiple Disabilities
+0000003216,003216,Yes,Developmental Delay
+0000003226,003226,Yes,Autism
+0000003232,003232,Yes,Visual Impairment
+0000003246,003246,Yes,Other Health Impairment
+0000003247,003247,Yes,Orthopedic Impairment
+0000003263,003263,Yes,Hearing Impairment
+0000003268,003268,Yes,Developmental Delay
+0000003277,003277,Yes,Multiple Disabilities
+0000003280,003280,Yes,Developmental Delay
+0000003311,003311,Yes,Developmental Delay
+0000003321,003321,Yes,Other Health Impairment
+0000003324,003324,Yes,Multiple Disabilities
+0000003330,003330,Yes,Visual Impairment
+0000003333,003333,Yes,Other Health Impairment
+0000003351,003351,Yes,Speech or Language Impairment
+0000003363,003363,Yes,Orthopedic Impairment
+0000003366,003366,Yes,Developmental Delay
+0000003367,003367,Yes,Other Health Impairment
+0000003371,003371,Yes,Other Health Impairment
+0000003382,003382,Yes,Speech or Language Impairment
+0000003392,003392,Yes,Hearing Impairment
+0000003397,003397,Yes,Developmental Delay
+0000003400,003400,Yes,Orthopedic Impairment
+0000003414,003414,Yes,Developmental Delay
+0000003442,003442,Yes,Multiple Disabilities
+0000003445,003445,Yes,Visual Impairment
+0000003453,003453,Yes,Multiple Disabilities
+0000003465,003465,Yes,Speech or Language Impairment
+0000003469,003469,Yes,Visual Impairment
+0000003471,003471,Yes,Developmental Delay
+0000003472,003472,Yes,Autism
+0000003475,003475,Yes,Multiple Disabilities
+0000003486,003486,Yes,Hearing Impairment
+0000003490,003490,Yes,Other Health Impairment
+0000003502,003502,Yes,Orthopedic Impairment
+0000003504,003504,Yes,Developmental Delay
+0000003527,003527,Yes,Developmental Delay
+0000003528,003528,Yes,Hearing Impairment
+0000003531,003531,Yes,Orthopedic Impairment
+0000003540,003540,Yes,Developmental Delay
+0000003546,003546,Yes,Hearing Impairment
+0000003549,003549,Yes,Visual Impairment
+0000003560,003560,Yes,Speech or Language Impairment
+0000003572,003572,Yes,Developmental Delay
+0000003578,003578,Yes,Orthopedic Impairment
+0000003584,003584,Yes,Other Health Impairment
+0000003588,003588,Yes,Other Health Impairment
+0000003618,003618,Yes,Developmental Delay
+0000003621,003621,Yes,Orthopedic Impairment
+0000003624,003624,Yes,Speech or Language Impairment
+0000003625,003625,Yes,Other Health Impairment
+0000003642,003642,Yes,Speech or Language Impairment
+0000003660,003660,Yes,Speech or Language Impairment
+0000003677,003677,Yes,Speech or Language Impairment
+0000003680,003680,Yes,Hearing Impairment
+0000003681,003681,Yes,Orthopedic Impairment
+0000003685,003685,Yes,Speech or Language Impairment
+0000003690,003690,Yes,Visual Impairment
+0000003695,003695,Yes,Speech or Language Impairment
+0000003696,003696,Yes,Other Health Impairment
+0000003699,003699,Yes,Visual Impairment
+0000003711,003711,Yes,Hearing Impairment
+0000003720,003720,Yes,Speech or Language Impairment
+0000003733,003733,Yes,Hearing Impairment
+0000003739,003739,Yes,Autism
+0000003758,003758,Yes,Hearing Impairment
+0000003774,003774,Yes,Other Health Impairment
+0000003779,003779,Yes,Autism
+0000003781,003781,Yes,Other Health Impairment
+0000003783,003783,Yes,Developmental Delay
+0000003788,003788,Yes,Developmental Delay
+0000003789,003789,Yes,Hearing Impairment
+0000003846,003846,Yes,Visual Impairment
+0000003847,003847,Yes,Hearing Impairment
+0000003853,003853,Yes,Autism
+0000003854,003854,Yes,Other Health Impairment
+0000003857,003857,Yes,Orthopedic Impairment
+0000003866,003866,Yes,Multiple Disabilities
+0000003880,003880,Yes,Speech or Language Impairment
+0000003893,003893,Yes,Orthopedic Impairment
+0000003894,003894,Yes,Autism
+0000003900,003900,Yes,Other Health Impairment
+0000003902,003902,Yes,Speech or Language Impairment
+0000003933,003933,Yes,Speech or Language Impairment
+0000003937,003937,Yes,Developmental Delay
+0000003939,003939,Yes,Orthopedic Impairment
+0000003940,003940,Yes,Multiple Disabilities
+0000003963,003963,Yes,Other Health Impairment
+0000003965,003965,Yes,Developmental Delay
+0000003979,003979,Yes,Other Health Impairment
+0000003980,003980,Yes,Multiple Disabilities
+0000003987,003987,Yes,Autism
+0000004006,004006,Yes,Orthopedic Impairment
+0000004026,004026,Yes,Hearing Impairment
+0000004036,004036,Yes,Hearing Impairment
+0000004043,004043,Yes,Speech or Language Impairment
+0000004049,004049,Yes,Multiple Disabilities
+0000004051,004051,Yes,Developmental Delay
+0000004065,004065,Yes,Autism
+0000004071,004071,Yes,Autism
+0000004074,004074,Yes,Autism
+0000004078,004078,Yes,Developmental Delay
+0000004096,004096,Yes,Autism
+0000004105,004105,Yes,Developmental Delay
+0000004111,004111,Yes,Visual Impairment
+0000004113,004113,Yes,Autism
+0000004114,004114,Yes,Orthopedic Impairment
+0000004115,004115,Yes,Orthopedic Impairment
+0000004119,004119,Yes,Multiple Disabilities
+0000004131,004131,Yes,Orthopedic Impairment
+0000004133,004133,Yes,Orthopedic Impairment
+0000004157,004157,Yes,Developmental Delay
+0000004164,004164,Yes,Hearing Impairment
+0000004185,004185,Yes,Speech or Language Impairment
+0000004190,004190,Yes,Developmental Delay
+0000004193,004193,Yes,Visual Impairment
+0000004204,004204,Yes,Orthopedic Impairment
+0000004210,004210,Yes,Speech or Language Impairment
+0000004211,004211,Yes,Developmental Delay
+0000004213,004213,Yes,Visual Impairment
+0000004221,004221,Yes,Orthopedic Impairment
+0000004228,004228,Yes,Hearing Impairment
+0000004233,004233,Yes,Autism
+0000004246,004246,Yes,Other Health Impairment
+0000004249,004249,Yes,Other Health Impairment
+0000004251,004251,Yes,Autism
+0000004254,004254,Yes,Multiple Disabilities
+0000004264,004264,Yes,Orthopedic Impairment
+0000004265,004265,Yes,Visual Impairment
+0000004279,004279,Yes,Visual Impairment
+0000004284,004284,Yes,Hearing Impairment
+0000004288,004288,Yes,Autism
+0000004290,004290,Yes,Multiple Disabilities
+0000004291,004291,Yes,Developmental Delay
+0000004292,004292,Yes,Visual Impairment
+0000004303,004303,Yes,Autism
+0000004308,004308,Yes,Visual Impairment
+0000004309,004309,Yes,Multiple Disabilities
+0000004319,004319,Yes,Speech or Language Impairment
+0000004345,004345,Yes,Visual Impairment
+0000004357,004357,Yes,Hearing Impairment
+0000004371,004371,Yes,Other Health Impairment
+0000004387,004387,Yes,Speech or Language Impairment
+0000004395,004395,Yes,Visual Impairment
+0000004404,004404,Yes,Visual Impairment
+0000004434,004434,Yes,Autism
+0000004438,004438,Yes,Other Health Impairment
+0000004445,004445,Yes,Multiple Disabilities
+0000004447,004447,Yes,Other Health Impairment
+0000004451,004451,Yes,Developmental Delay
+0000004452,004452,Yes,Multiple Disabilities
+0000004458,004458,Yes,Visual Impairment
+0000004486,004486,Yes,Developmental Delay
+0000004490,004490,Yes,Orthopedic Impairment
+0000004496,004496,Yes,Orthopedic Impairment
+0000004514,004514,Yes,Developmental Delay
+0000004526,004526,Yes,Hearing Impairment
+0000004542,004542,Yes,Visual Impairment
+0000004549,004549,Yes,Hearing Impairment
+0000004550,004550,Yes,Autism
+0000004551,004551,Yes,Speech or Language Impairment
+0000004552,004552,Yes,Other Health Impairment
+0000004558,004558,Yes,Orthopedic Impairment
+0000004561,004561,Yes,Speech or Language Impairment
+0000004575,004575,Yes,Hearing Impairment
+0000004598,004598,Yes,Other Health Impairment
+0000004599,004599,Yes,Autism
+0000004602,004602,Yes,Other Health Impairment
+0000004615,004615,Yes,Orthopedic Impairment
+0000004617,004617,Yes,Orthopedic Impairment
+0000004626,004626,Yes,Visual Impairment
+0000004630,004630,Yes,Developmental Delay
+0000004644,004644,Yes,Autism
+0000004654,004654,Yes,Autism
+0000004655,004655,Yes,Hearing Impairment
+0000004662,004662,Yes,Developmental Delay
+0000004683,004683,Yes,Visual Impairment
+0000004689,004689,Yes,Hearing Impairment
+0000004703,004703,Yes,Other Health Impairment
+0000004742,004742,Yes,Other Health Impairment
+0000004744,004744,Yes,Hearing Impairment
+0000004752,004752,Yes,Autism
+0000004766,004766,Yes,Developmental Delay
+0000004769,004769,Yes,Autism
+0000004773,004773,Yes,Speech or Language Impairment
+0000004776,004776,Yes,Visual Impairment
+0000004777,004777,Yes,Orthopedic Impairment
+0000004783,004783,Yes,Developmental Delay
+0000004796,004796,Yes,Other Health Impairment
+0000004804,004804,Yes,Multiple Disabilities
+0000004828,004828,Yes,Hearing Impairment
+0000004829,004829,Yes,Developmental Delay
+0000004838,004838,Yes,Speech or Language Impairment
+0000004842,004842,Yes,Other Health Impairment
+0000004845,004845,Yes,Hearing Impairment
+0000004846,004846,Yes,Autism
+0000004856,004856,Yes,Hearing Impairment
+0000004865,004865,Yes,Orthopedic Impairment
+0000004874,004874,Yes,Multiple Disabilities
+0000004875,004875,Yes,Developmental Delay
+0000004900,004900,Yes,Other Health Impairment
+0000004911,004911,Yes,Orthopedic Impairment
+0000004928,004928,Yes,Visual Impairment
+0000004930,004930,Yes,Autism
+0000004935,004935,Yes,Speech or Language Impairment
+0000004941,004941,Yes,Visual Impairment
+0000004960,004960,Yes,Hearing Impairment
+0000004963,004963,Yes,Other Health Impairment
+0000004977,004977,Yes,Orthopedic Impairment
+0000004978,004978,Yes,Autism
+0000004983,004983,Yes,Speech or Language Impairment
+0000004996,004996,Yes,Visual Impairment
