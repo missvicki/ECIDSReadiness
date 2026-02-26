@@ -110,7 +110,7 @@ export default function DomainsPage() {
     { name: 'Has Disability', calc: (d: ChildWithRisk) => d.has_disability },
     { name: 'Low COS Ratings', calc: (d: ChildWithRisk) => d.low_outcomes },
     { name: 'Deep Poverty', calc: (d: ChildWithRisk) => d.deep_poverty },
-    { name: 'Homelessness', calc: (d: ChildWithRisk) => d.HomelessnessStatus },
+    { name: 'Homelessness', calc: (d: ChildWithRisk) => d.homelessness_flag },
     { name: 'Foster Care', calc: (d: ChildWithRisk) => d.in_foster_care },
     { name: 'Household Stressors (≥2)', calc: (d: ChildWithRisk) => d.num_household_stressors >= 2 },
   ];
@@ -138,7 +138,7 @@ export default function DomainsPage() {
     { name: 'Missed Screenings', lift: calculateLift(d => d.num_screenings_completed < 4) },
     { name: 'Low Attendance', lift: calculateLift(d => d.avg_attendance_days < 80) },
     { name: 'Deep Poverty', lift: calculateLift(d => d.deep_poverty) },
-    { name: 'Homelessness', lift: calculateLift(d => d.HomelessnessStatus) },
+    { name: 'Homelessness', lift: calculateLift(d => d.homelessness_flag) },
     { name: 'Foster Care', lift: calculateLift(d => d.in_foster_care) },
     { name: 'Has Disability', lift: calculateLift(d => d.has_disability) },
     { name: 'Multiple Gaps', lift: calculateLift(d => d.num_enrollment_gaps > 1) },

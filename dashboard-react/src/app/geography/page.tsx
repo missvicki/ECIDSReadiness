@@ -108,11 +108,11 @@ export default function GeographyPage() {
   // 5. Family Stressor Prevalence by Risk Tier (for grouped bar)
   const contextIndicators = [
     { name: 'Deep Poverty', field: 'deep_poverty' },
-    { name: 'Homelessness', field: 'HomelessnessStatus' },
+    { name: 'Homelessness', field: 'homelessness_flag' },
     { name: 'Foster Care', field: 'in_foster_care' },
-    { name: 'Abuse/Neglect', field: 'ChildAbuseNeglect' },
-    { name: 'Substance Abuse', field: 'FamilyMemberSubstanceUseAbuse' },
-    { name: 'Mental Illness', field: 'HouseholdMemberDepressedOrMentallyIll' },
+    { name: 'Abuse/Neglect', field: 'abuse_flag' },
+    { name: 'Substance Abuse', field: 'substance_flag' },
+    { name: 'Mental Illness', field: 'depression_flag' },
   ];
 
   const stressorsByTier = contextIndicators.map(indicator => {
