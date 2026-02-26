@@ -61,6 +61,9 @@ export default function OverviewPage() {
     { domain: 'Context', score: filteredData.reduce((sum, d) => sum + d.context_score, 0) / totalChildren },
   ];
 
+  // High-risk children analysis
+  const highRiskChildren = filteredData.filter(d => d.risk_tier === 'High');
+
   return (
     <>
       <Filters data={data} filters={filters} onChange={setFilters} />
@@ -122,6 +125,82 @@ export default function OverviewPage() {
             in participation and missed developmental screenings as primary risk drivers. Early identification enables
             targeted intervention before kindergarten entry.
           </p>
+        </div>
+
+        {/* What Drives High Risk */}
+        <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4 text-red-900">🔍 What Drives High Risk?</h2>
+          <p className="text-sm text-red-800 mb-4">
+            Analysis of {highRiskChildren.length.toLocaleString()} high-risk children (score 60+):
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {/* Most Common Risk Drivers */}
+            <div>
+              <h3 className="font-bold text-red-900 mb-3">Most Common Risk Drivers</h3>
+              <ul className="space-y-2 text-sm text-red-800">
+                <li className="flex items-center gap-2">
+                  <span className="font-bold">→</span>
+                  <span><strong>{((highRiskChildren.filter(d => d.num_enrollment_gaps > 1).length / highRiskChildren.length) * 100).toFixed(0)}%</strong> have 2+ enrollment gaps</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="font-bold">→</span>
+                  <span><strong>{((highRiskChildren.filter(d => d.num_screenings_completed < 4).length / highRiskChildren.length) * 100).toFixed(0)}%</strong> missed 3+ developmental screenings</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="font-bold">→</span>
+                  <span><strong>{((highRiskChildren.filter(d => d.avg_attendance_days < 80).length / highRiskChildren.length) * 100).toFixed(0)}%</strong> have low attendance (&lt;80 days)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="font-bold">→</span>
+                  <span><strong>{((highRiskChildren.filter(d => d.deep_poverty).length / highRiskChildren.length) * 100).toFixed(0)}%</strong> in deep poverty (&lt;100% FPL)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="font-bold">→</span>
+                  <span><strong>{((highRiskChildren.filter(d => d.num_household_stressors >= 2).length / highRiskChildren.length) * 100).toFixed(0)}%</strong> have 2+ household stressors</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Domain Breakdown */}
+            <div>
+              <h3 className="font-bold text-red-900 mb-3">Domain Breakdown (High-Risk Avg)</h3>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between bg-white rounded px-3 py-2">
+                  <span className="text-sm font-medium text-gray-700">Stability</span>
+                  <span className="text-sm font-bold text-red-700">
+                    {(highRiskChildren.reduce((sum, d) => sum + d.stability_score, 0) / highRiskChildren.length).toFixed(0)}/100
+                  </span>
+                </div>
+                <div className="flex items-center justify-between bg-white rounded px-3 py-2">
+                  <span className="text-sm font-medium text-gray-700">Engagement</span>
+                  <span className="text-sm font-bold text-red-700">
+                    {(highRiskChildren.reduce((sum, d) => sum + d.engagement_score, 0) / highRiskChildren.length).toFixed(0)}/100
+                  </span>
+                </div>
+                <div className="flex items-center justify-between bg-white rounded px-3 py-2">
+                  <span className="text-sm font-medium text-gray-700">Developmental</span>
+                  <span className="text-sm font-bold text-red-700">
+                    {(highRiskChildren.reduce((sum, d) => sum + d.developmental_score, 0) / highRiskChildren.length).toFixed(0)}/100
+                  </span>
+                </div>
+                <div className="flex items-center justify-between bg-white rounded px-3 py-2">
+                  <span className="text-sm font-medium text-gray-700">Context</span>
+                  <span className="text-sm font-bold text-red-700">
+                    {(highRiskChildren.reduce((sum, d) => sum + d.context_score, 0) / highRiskChildren.length).toFixed(0)}/100
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Insight */}
+          <div className="bg-red-100 rounded-lg p-4">
+            <p className="text-sm font-semibold text-red-900">
+              💡 <strong>Key Insight:</strong> High-risk children struggle most with <strong>enrollment stability</strong> and <strong>program engagement</strong>—both
+              modifiable factors through targeted outreach, transportation support, and retention programs.
+            </p>
+          </div>
         </div>
 
         {/* Charts */}
