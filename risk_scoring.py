@@ -293,9 +293,11 @@ class ReadinessRiskScorer:
         )
 
         # Assign risk tier based on composite score
+        # Thresholds adjusted to match actual score distribution
+        # Low: 0-24 (~50%), Moderate: 24-35 (~30%), High: 35+ (~20%)
         risk_df["risk_tier"] = pd.cut(
             risk_df["composite_risk_score"],
-            bins=[0, 30, 60, 100],
+            bins=[0, 24, 35, 100],
             labels=["Low", "Moderate", "High"],
             include_lowest=True
         )
