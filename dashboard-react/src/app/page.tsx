@@ -92,7 +92,7 @@ export default function OverviewPage() {
             icon="👶"
           />
           <MetricCard
-            label="High Readiness Risk"
+            label="High Risk"
             value={`${highRiskPct.toFixed(1)}%`}
             icon="⚠️"
             color="red"
@@ -209,7 +209,7 @@ export default function OverviewPage() {
         {/* Charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="card">
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">{highRiskPct.toFixed(1)}% of Children Show High Readiness Risk</h3>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">{highRiskPct.toFixed(1)}% of Children Show High Risk</h3>
             <p className="text-xs text-gray-600 mb-4">{filteredData.filter(d => d.risk_tier === 'High').length.toLocaleString()} children flagged for targeted intervention—early identification enables prevention</p>
             <DonutChart
               data={riskDistribution}
