@@ -6,13 +6,10 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
   { href: '/', label: '📍 Overview', exact: true },
-  { href: '/risk', label: '📊 Risk Distribution' },
-  { href: '/domains', label: '🎯 Domain Decomposition' },
-  { href: '/participation', label: '📅 Participation & Stability' },
-  { href: '/developmental', label: '🏥 Developmental Signals' },
-  { href: '/geography', label: '🌎 Geographic & Context' },
   { href: '/cohort', label: '👥 Cohort Explorer' },
+  { href: '/risk', label: '📊 Risk Distribution' },
   { href: '/simulation', label: '🔮 Predictive Simulation' },
+  { href: '/interventions', label: '🚨 Risk-to-Response' },
   { href: '/methodology', label: '📚 Data Methodology' },
   { href: '/use-cases', label: '💡 Use Cases' },
 ];
@@ -36,12 +33,12 @@ export default function Navigation() {
             <h1 className="text-4xl font-bold">
               🎯 ECIDS Readiness Risk Index
             </h1>
-            <p className="text-cyan-100 mt-2">
-              Early Childhood Integrated Data System
-            </p>
           </Link>
           <p className="text-xs text-yellow-100 mt-3">
             ⚠️ SYNTHETIC DATA - This dashboard uses artificially generated data for demonstration purposes only.
+          </p>
+          <p className="text-xs text-cyan-100 mt-2">
+            🔄 Data Refresh Frequency: <strong>Simulated Quarterly Refresh</strong> (Production: Designed for monthly/quarterly cycles)
           </p>
         </div>
 

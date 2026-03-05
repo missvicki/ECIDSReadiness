@@ -131,13 +131,14 @@ export default function OverviewPage() {
         <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 mb-8">
           <h2 className="text-xl font-bold mb-4 text-red-900">🔍 What Drives High Risk?</h2>
           <p className="text-sm text-red-800 mb-4">
-            Analysis of {highRiskChildren.length.toLocaleString()} high-risk children (score 60+):
+            Analysis of {highRiskChildren.length.toLocaleString()} high-risk children:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Most Common Risk Drivers */}
             <div>
-              <h3 className="font-bold text-red-900 mb-3">Most Common Risk Drivers</h3>
+              <h3 className="font-bold text-red-900 mb-3">Most Common Characteristics</h3>
+              <p className="text-xs text-red-700 mb-2 italic">(Prevalence within high-risk group)</p>
               <ul className="space-y-2 text-sm text-red-800">
                 <li className="flex items-center gap-2">
                   <span className="font-bold">→</span>
@@ -197,8 +198,10 @@ export default function OverviewPage() {
           {/* Key Insight */}
           <div className="bg-red-100 rounded-lg p-4">
             <p className="text-sm font-semibold text-red-900">
-              💡 <strong>Key Insight:</strong> High-risk children struggle most with <strong>enrollment stability</strong> and <strong>program engagement</strong>—both
-              modifiable factors through targeted outreach, transportation support, and retention programs.
+              💡 <strong>Key Insight:</strong> High-risk children overwhelmingly struggle with <strong>chronic low attendance (97%)</strong> and
+              <strong> deep poverty (87%)</strong>, with over half also missing critical developmental screenings. The compounding effect of
+              poverty + low engagement creates persistent vulnerability. Target interventions: attendance coaching, transportation support,
+              co-located screenings, and poverty-linked wraparound services.
             </p>
           </div>
         </div>
@@ -228,9 +231,12 @@ export default function OverviewPage() {
         <div className="info-box">
           <h3 className="text-lg font-bold mb-2">💡 So What?</h3>
           <p className="text-gray-800">
-            <strong>This PoC proves existing ECIDS data can identify high-risk children before kindergarten entry.</strong> The {highRiskPct.toFixed(0)}%
-            flagged as high-risk show clear deficits in modifiable factors—enrollment stability, screening completion, attendance. Programs can now
-            prioritize resources toward children most likely to struggle, shifting from reactive remediation to proactive prevention.
+            <strong>This PoC proves existing ECIDS data can identify at-risk children before kindergarten entry.</strong> Nearly {highRiskPct.toFixed(0)}%
+            of children show elevated readiness risk across four measurable domains: <strong>Stability</strong> (enrollment gaps, continuity),
+            <strong> Engagement</strong> (attendance, screening completion), <strong>Developmental</strong> (disability services, outcome ratings),
+            and <strong>Context</strong> (poverty, household stressors). These are not immutable traits—they're modifiable factors that respond to
+            targeted intervention. This predictive model enables programs to prioritize resources toward children most likely to struggle, shifting
+            from reactive remediation to proactive prevention. Early identification means early intervention.
           </p>
         </div>
       </Container>

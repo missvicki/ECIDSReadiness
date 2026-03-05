@@ -280,9 +280,10 @@ export default function CohortExplorerPage() {
         <div className="info-box mt-8">
           <h3 className="text-lg font-bold mb-2">💡 So What?</h3>
           <p className="text-gray-800">
-            <strong>This table bridges analytics to action.</strong> Case managers and coordinators can identify specific high-risk
-            children, understand their primary risk drivers, and export targeted lists for outreach, enrollment, or service referrals.
-            The ability to drill down from population patterns to individual records makes the risk index operationally useful.
+            <strong>This table bridges analytics to action.</strong> Case managers, coordinators, and home visitors can identify specific
+            at-risk children by name, understand their primary risk drivers, and export targeted lists for intensive outreach, re-enrollment,
+            or service referrals. The ability to drill down from population-level patterns to individual child records makes the risk index
+            operationally useful—not just a dashboard metric, but a daily workflow tool. Know who needs help, why they need it, and where to find them.
           </p>
         </div>
       </Container>
