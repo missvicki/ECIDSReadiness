@@ -208,23 +208,29 @@ export default function OverviewPage() {
 
         {/* Charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <DonutChart
-            data={riskDistribution}
-            nameKey="name"
-            valueKey="value"
-            title="Risk Tier Distribution"
-            centerText={{
-              label: 'High Risk',
-              value: `${highRiskPct.toFixed(1)}%`,
-            }}
-          />
-          <BarChart
-            data={domainScores}
-            xKey="domain"
-            yKey="score"
-            title="Average Risk Scores by Domain"
-            color="#8b5cf6"
-          />
+          <div className="card">
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">{highRiskPct.toFixed(1)}% of Children Show High Readiness Risk</h3>
+            <p className="text-xs text-gray-600 mb-4">{filteredData.filter(d => d.risk_tier === 'High').length.toLocaleString()} children flagged for targeted intervention—early identification enables prevention</p>
+            <DonutChart
+              data={riskDistribution}
+              nameKey="name"
+              valueKey="value"
+              centerText={{
+                label: 'High Risk',
+                value: `${highRiskPct.toFixed(1)}%`,
+              }}
+            />
+          </div>
+          <div className="card">
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Risk is Multidimensional Across 4 Domains</h3>
+            <p className="text-xs text-gray-600 mb-4">Stability, Engagement, Developmental, and Context scores combine to predict readiness</p>
+            <BarChart
+              data={domainScores}
+              xKey="domain"
+              yKey="score"
+              color="#2563eb"
+            />
+          </div>
         </div>
 
         {/* So What Section */}

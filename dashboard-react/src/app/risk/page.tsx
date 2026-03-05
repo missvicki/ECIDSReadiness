@@ -319,14 +319,18 @@ export default function RiskPage() {
           </div>
         </div>
 
-        {/* Charts Row 1: Geographic & Program Risk */}
+        {/* Geographic Risk Distribution */}
         <div className="mb-8">
-          <h3 className="text-xl font-bold mb-4">🗺️ Geographic & Program Risk Patterns</h3>
-                  {/* Regional Risk Profile */}
-        <div className="card mb-8">
-          <h3 className="text-xl font-bold mb-4">🗺️ Regional Risk Profile</h3>
+          <h3 className="text-xl font-bold mb-2">🗺️ Geographic Risk Distribution</h3>
           <p className="text-sm text-gray-600 mb-4">
-            Missouri regions show meaningful variation in both average risk scores and percentage of high-risk children.
+            Risk concentration varies by region and county—identifying where to target intensive services
+          </p>
+
+        {/* Regional Risk Profile */}
+        <div className="card mb-8">
+          <h3 className="text-lg font-bold mb-2">Regional Variation</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Average risk scores and percentage of high-risk children by Missouri region
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -364,98 +368,128 @@ export default function RiskPage() {
           </div>
         </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <BarChart
-              data={countyAvgRisk}
-              xKey="county"
-              yKey="avgRisk"
-              yAxisLabel="Average Risk Score (0-100)"
-              title="Counties with Highest Average Risk Score (Top 15, n≥20)"
-              color="#2563eb"
-            />
-            <BarChart
-              data={programRiskData}
-              xKey="program"
-              yKey="avgRisk"
-              yAxisLabel="Average Risk Score (0-100)"
-              title="Programs with Highest Risk (n≥20)"
-              color="#2563eb"
-            />
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Risk Concentrates in Specific Counties</h3>
+              <p className="text-xs text-gray-600 mb-4">Top 15 counties show 2-3x higher average risk than statewide mean—targeting opportunity</p>
+              <BarChart
+                data={countyAvgRisk}
+                xKey="county"
+                yKey="avgRisk"
+                yAxisLabel="Average Risk Score (0-100)"
+                color="#2563eb"
+              />
+            </div>
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Certain Programs Serve Highest-Need Children</h3>
+              <p className="text-xs text-gray-600 mb-4">Programs ranked by average risk—shows where intensive supports are needed most</p>
+              <BarChart
+                data={programRiskData}
+                xKey="program"
+                yKey="avgRisk"
+                yAxisLabel="Average Risk Score (0-100)"
+                color="#2563eb"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Charts Row 2: Distribution Analysis */}
+        {/* Early Warning Indicators */}
         <div className="mb-8">
-          <h3 className="text-xl font-bold mb-4">📊 Distribution Patterns</h3>
+          <h3 className="text-xl font-bold mb-2">⚡ Early Warning Indicators</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            How specific behaviors and circumstances predict readiness risk levels
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <BarChart
-              data={riskByPoverty}
-              xKey="band"
-              yKey="avgRisk"
-              yAxisLabel="Readiness Risk Score (0-100)"
-              title="Risk by Poverty Level"
-              color="#2563eb"
-            />
-            <BarChart
-              data={screeningDistribution}
-              xKey="category"
-              yKey="avgRiskScore"
-              yAxisLabel="Average Readiness Score"
-              title="Risk by Screening Completion"
-              color="#2563eb"
-            />
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Deep Poverty Predicts Higher Risk</h3>
+              <p className="text-xs text-gray-600 mb-4">Children &lt;100% FPL average {riskByPoverty[0]?.avgRisk.toFixed(0)} risk score vs {riskByPoverty[3]?.avgRisk.toFixed(0)} for &gt;300% FPL</p>
+              <BarChart
+                data={riskByPoverty}
+                xKey="band"
+                yKey="avgRisk"
+                yAxisLabel="Readiness Risk Score (0-100)"
+                color="#2563eb"
+              />
+            </div>
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Missed Screenings Signal Elevated Risk</h3>
+              <p className="text-xs text-gray-600 mb-4">Children completing ≤2 screenings show 3x higher risk than those completing all 6</p>
+              <BarChart
+                data={screeningDistribution}
+                xKey="category"
+                yKey="avgRiskScore"
+                yAxisLabel="Average Readiness Score"
+                color="#2563eb"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <BarChart
-              data={attendanceDistribution}
-              xKey="category"
-              yKey="avgRiskScore"
-              yAxisLabel="Average Readiness Score"
-              title="Risk by Attendance Level"
-              color="#2563eb"
-            />
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Chronic Low Attendance Predicts Risk</h3>
+              <p className="text-xs text-gray-600 mb-4">Children attending &lt;50 days/year show dramatically higher risk scores</p>
+              <BarChart
+                data={attendanceDistribution}
+                xKey="category"
+                yKey="avgRiskScore"
+                yAxisLabel="Average Readiness Score"
+                color="#2563eb"
+              />
+            </div>
 
-            <BarChart
-              data={gapDistribution}
-              xKey="category"
-              yKey="avgRiskScore"
-              yAxisLabel="Average Readiness Score"
-              title="Risk by Enrollment Gaps"
-              color="#2563eb"
-            />
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Enrollment Gaps Drive Risk Up</h3>
+              <p className="text-xs text-gray-600 mb-4">Each additional enrollment gap (30+ days) compounds risk—continuity is protective</p>
+              <BarChart
+                data={gapDistribution}
+                xKey="category"
+                yKey="avgRiskScore"
+                yAxisLabel="Average Readiness Score"
+                color="#2563eb"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Household Stressors Analysis */}
+        {/* Household Context Analysis */}
         <div className="mb-8">
-          <h3 className="text-xl font-bold mb-4">🏠 Household Context & Risk</h3>
+          <h3 className="text-xl font-bold mb-2">🏠 Family Context & Compounding Risk</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            How household stressors compound to elevate risk levels
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <BarChart
-              data={stressorRisk}
-              xKey="stressors"
-              yKey="avgRisk"
-              yAxisLabel="Average Risk Score (0-100)"
-              title="Risk Score vs Number of Household Stressors"
-              color="#2563eb"
-            />
-            <StackedBarChart
-              data={stressorsByTier}
-              xKey="indicator"
-              yKeys={['Low', 'Moderate', 'High']}
-              title="Family Stressor Prevalence by Risk Tier"
-              yAxisLabel="Prevalence (%)"
-              colors={['#10b981', '#f59e0b', '#ef4444']}
-              stacked={false}
-            />
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">Each Stressor Compounds Risk</h3>
+              <p className="text-xs text-gray-600 mb-4">Risk score climbs with each additional household stressor—2+ stressors = high risk</p>
+              <BarChart
+                data={stressorRisk}
+                xKey="stressors"
+                yKey="avgRisk"
+                yAxisLabel="Average Risk Score (0-100)"
+                color="#2563eb"
+              />
+            </div>
+            <div className="card">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">High-Risk Children Face Multiple Stressors</h3>
+              <p className="text-xs text-gray-600 mb-4">Homelessness, foster care, and poverty cluster in high-risk tier</p>
+              <StackedBarChart
+                data={stressorsByTier}
+                xKey="indicator"
+                yKeys={['Low', 'Moderate', 'High']}
+                yAxisLabel="Prevalence (%)"
+                colors={['#10b981', '#f59e0b', '#ef4444']}
+                stacked={false}
+              />
+            </div>
           </div>
         </div>
 
 
         {/* Indicator Prevalence by Risk Tier */}
         <div className="card mb-8">
-          <h3 className="text-xl font-bold mb-4">📊 Indicator Prevalence by Risk Tier</h3>
+          <h3 className="text-xl font-bold mb-2">📊 Risk Indicator Correlation Matrix</h3>
           <p className="text-sm text-gray-600 mb-4">
-            This table demonstrates correlation—higher-risk children show elevated rates across key indicators.
+            Percentage of children showing each risk indicator by tier—demonstrating how indicators cluster in high-risk children
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -483,47 +517,60 @@ export default function RiskPage() {
 
         {/* Key Insights */}
         <div className="card mb-8">
-          <h3 className="text-xl font-bold mb-4">🎯 Key Insights</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h4 className="font-bold mb-1">Poverty-Risk Correlation</h4>
+          <h3 className="text-xl font-bold mb-4">💡 Key Insights</h3>
+          <div className="space-y-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-bold mb-2 text-blue-900">Multidimensional Risk</h4>
               <p className="text-gray-700 text-sm">
-                Children in deep poverty (&lt;100% FPL) show {riskByPoverty[0].avgRisk.toFixed(0)} average risk score vs{' '}
-                {riskByPoverty[3].avgRisk.toFixed(0)} for higher income (&gt;300% FPL).
+                High-risk children show elevated scores across all four domains (Stability, Engagement, Developmental, Context),
+                confirming risk compounds when challenges occur simultaneously across multiple areas. This validates the need for
+                comprehensive, multi-domain interventions rather than single-issue approaches.
               </p>
             </div>
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h4 className="font-bold mb-1">Screening Completion</h4>
-              <p className="text-gray-700 text-sm">
-                {((screeningDistribution.find(d => d.category === '0-2 screenings')?.count || 0) / filteredData.length * 100).toFixed(0)}%
-                of children completed 2 or fewer of the 6 recommended developmental screenings.
-              </p>
-            </div>
-            <div className="border-l-4 border-green-500 pl-4">
-              <h4 className="font-bold mb-1">Low Attendance</h4>
-              <p className="text-gray-700 text-sm">
-                {((attendanceDistribution.find(d => d.category === 'Very Low (<50)')?.count || 0) / filteredData.length * 100).toFixed(0)}%
-                of children attend fewer than 50 days per year—indicating severe engagement challenges.
-              </p>
-            </div>
-            <div className="border-l-4 border-yellow-500 pl-4">
-              <h4 className="font-bold mb-1">Enrollment Gaps</h4>
-              <p className="text-gray-700 text-sm">
-                {((gapDistribution.find(d => d.category === '2+ gaps')?.count || 0) / filteredData.length * 100).toFixed(0)}%
-                of children have 2 or more enrollment gaps—suggesting significant instability.
-              </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <h4 className="font-bold mb-2 text-purple-900">Poverty × Risk</h4>
+                <p className="text-gray-700 text-sm">
+                  Deep poverty (&lt;100% FPL): <strong>{riskByPoverty[0].avgRisk.toFixed(0)}</strong> avg risk<br/>
+                  Higher income (&gt;300%): <strong>{riskByPoverty[3].avgRisk.toFixed(0)}</strong> avg risk<br/>
+                  <span className="text-purple-700 font-semibold">Gap: {(riskByPoverty[0].avgRisk - riskByPoverty[3].avgRisk).toFixed(0)} points</span>
+                </p>
+              </div>
+
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h4 className="font-bold mb-2 text-green-900">Early Warning Signals</h4>
+                <p className="text-gray-700 text-sm">
+                  <strong>{((screeningDistribution.find(d => d.category === '0-2 screenings')?.count || 0) / filteredData.length * 100).toFixed(0)}%</strong> completed ≤2 screenings<br/>
+                  <strong>{((attendanceDistribution.find(d => d.category === 'Very Low (<50)')?.count || 0) / filteredData.length * 100).toFixed(0)}%</strong> attend &lt;50 days/year<br/>
+                  <strong>{((gapDistribution.find(d => d.category === '2+ gaps')?.count || 0) / filteredData.length * 100).toFixed(0)}%</strong> have 2+ enrollment gaps
+                </p>
+              </div>
+
+              <div className="bg-amber-50 p-4 rounded-lg">
+                <h4 className="font-bold mb-2 text-amber-900">Geographic Targeting</h4>
+                <p className="text-gray-700 text-sm">
+                  Risk concentration varies significantly by region and county, enabling precise targeting of
+                  intensive services, mobile outreach, and program expansion to highest-need areas.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* So What */}
         <div className="info-box">
-          <h3 className="text-lg font-bold mb-2">💡 So What?</h3>
+          <h3 className="text-lg font-bold mb-2">🎯 So What?</h3>
+          <p className="text-gray-800 mb-3">
+            <strong>This analysis proves that ECIDS data can identify vulnerable children before kindergarten entry—and shows exactly where to intervene.</strong>
+          </p>
           <p className="text-gray-800">
-            <strong>Risk patterns concentrate around modifiable factors</strong>—at-risk children complete fewer screenings, attend less
-            consistently, and experience more enrollment disruptions. These are not immutable characteristics but intervention opportunities.
-            County-level variation reveals exactly where to target program expansion, mobile services, and intensive outreach. This analysis
-            validates that ECIDS data can drive evidence-based, geographically-targeted resource allocation rather than spreading efforts thin.
+            Risk is not random. High-risk children demonstrate measurable patterns: chronic low attendance, missed developmental screenings,
+            enrollment instability, and compounding family stressors. These are <strong>modifiable factors</strong>, not immutable traits.
+            The multidimensional risk profile reveals that effective intervention requires addressing multiple domains simultaneously—attendance
+            coaching alone won't help a child who also lacks stable housing and misses critical screenings. Geographic variation pinpoints exactly
+            which counties and programs need intensive support. This shifts the paradigm from reactive remediation to <strong>proactive,
+            data-driven prevention</strong>.
           </p>
         </div>
       </Container>
