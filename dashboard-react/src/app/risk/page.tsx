@@ -8,6 +8,7 @@ import Filters from '@/components/Filters';
 import MetricCard from '@/components/MetricCard';
 import BarChart from '@/components/charts/BarChart';
 import StackedBarChart from '@/components/charts/StackedBarChart';
+import MissouriCountyMap from '@/components/charts/MissouriCountyMap';
 import Container from '@/components/layout/Container';
 
 export default function RiskPage() {
@@ -88,19 +89,19 @@ export default function RiskPage() {
         ? categoryData.reduce((sum, d) => sum + d.composite_risk_score, 0) / categoryData.length
         : 0
     };
-  });
+  }).sort((a, b) => b.avgRiskScore - a.avgRiskScore);
 
   // 3. Attendance distribution
   const attendanceDistribution = [
-    { category: 'Very Low (<50)', count: filteredData.filter(d => d.avg_attendance_days < 50).length },
-    { category: 'Low (50-100)', count: filteredData.filter(d => d.avg_attendance_days >= 50 && d.avg_attendance_days < 100).length },
-    { category: 'Moderate (100-150)', count: filteredData.filter(d => d.avg_attendance_days >= 100 && d.avg_attendance_days < 150).length },
-    { category: 'High (150+)', count: filteredData.filter(d => d.avg_attendance_days >= 150).length },
+    { category: '<50 days/yr', count: filteredData.filter(d => d.avg_attendance_days < 50).length },
+    { category: '50-100 days/yr', count: filteredData.filter(d => d.avg_attendance_days >= 50 && d.avg_attendance_days < 100).length },
+    { category: '100-150 days/yr', count: filteredData.filter(d => d.avg_attendance_days >= 100 && d.avg_attendance_days < 150).length },
+    { category: '150+ days/yr', count: filteredData.filter(d => d.avg_attendance_days >= 150).length },
   ].map(item => {
     const categoryData = filteredData.filter(d => {
-      if (item.category === 'Very Low (<50)') return d.avg_attendance_days < 50;
-      if (item.category === 'Low (50-100)') return d.avg_attendance_days >= 50 && d.avg_attendance_days < 100;
-      if (item.category === 'Moderate (100-150)') return d.avg_attendance_days >= 100 && d.avg_attendance_days < 150;
+      if (item.category === '<50 days/yr') return d.avg_attendance_days < 50;
+      if (item.category === '50-100 days/yr') return d.avg_attendance_days >= 50 && d.avg_attendance_days < 100;
+      if (item.category === '100-150 days/yr') return d.avg_attendance_days >= 100 && d.avg_attendance_days < 150;
       return d.avg_attendance_days >= 150;
     });
     return {
@@ -109,7 +110,7 @@ export default function RiskPage() {
         ? categoryData.reduce((sum, d) => sum + d.composite_risk_score, 0) / categoryData.length
         : 0
     };
-  });
+  }).sort((a, b) => b.avgRiskScore - a.avgRiskScore);
 
   // 4. Enrollment gap distribution
   const gapDistribution = [
@@ -128,7 +129,7 @@ export default function RiskPage() {
         ? categoryData.reduce((sum, d) => sum + d.composite_risk_score, 0) / categoryData.length
         : 0
     };
-  });
+  }).sort((a, b) => b.avgRiskScore - a.avgRiskScore);
 
   // 5. Program risk analysis
   const programRisk: any = {};
@@ -151,34 +152,15 @@ export default function RiskPage() {
     .filter(d => d.count >= 20)
     .sort((a, b) => b.avgRisk - a.avgRisk);
 
-  // 6. Regional Risk Profile
-  const regionalRisk = Object.entries(
-    filteredData.reduce((acc: any, child) => {
-      const region = getRegion(child.AddressCountyName);
-      if (!acc[region]) acc[region] = { sum: 0, count: 0, highRisk: 0 };
-      acc[region].sum += child.composite_risk_score;
-      acc[region].count += 1;
-      if (child.risk_tier === 'High') acc[region].highRisk += 1;
-      return acc;
-    }, {})
-  )
-    .map(([region, stats]: [string, any]) => ({
-      region,
-      avgRisk: stats.sum / stats.count,
-      highRiskPct: (stats.highRisk / stats.count) * 100,
-      count: stats.count,
-    }))
-    .filter(d => d.count >= 50)
-    .sort((a, b) => b.avgRisk - a.avgRisk);
 
   // 7. Household stressors vs risk
   const stressorRisk = [0, 1, 2, 3, 4].map(num => {
     const children = filteredData.filter(d => d.num_household_stressors === num);
     return {
-      stressors: `${num}`,
+      stressors: `${num} stressor${num !== 1 ? 's' : ''}`,
       avgRisk: children.reduce((sum, d) => sum + d.composite_risk_score, 0) / children.length || 0,
     };
-  });
+  }).sort((a, b) => b.avgRisk - a.avgRisk);
 
   // 8. Family Stressor Prevalence by Risk Tier
   const contextIndicators = [
@@ -241,23 +223,23 @@ export default function RiskPage() {
   });
 
   // 11. Average risk score by county
-  const countyAvgRisk = Object.entries(
+  const countyAvgRiskAll = Object.entries(
     filteredData.reduce((acc: any, child) => {
       const county = child.AddressCountyName;
-      if (!acc[county]) acc[county] = { sum: 0, count: 0 };
+      if (!acc[county]) acc[county] = { sum: 0, count: 0, highRisk: 0 };
       acc[county].sum += child.composite_risk_score;
       acc[county].count += 1;
+      if (child.risk_tier === 'High') acc[county].highRisk += 1;
       return acc;
     }, {})
   )
     .map(([county, stats]: [string, any]) => ({
       county,
       avgRisk: stats.sum / stats.count,
+      highRiskPct: (stats.highRisk / stats.count) * 100,
       count: stats.count,
-    }))
-    .filter(d => d.count >= 20)
-    .sort((a, b) => b.avgRisk - a.avgRisk)
-    .slice(0, 15);
+    }));
+
 
   return (
     <>
@@ -290,35 +272,6 @@ export default function RiskPage() {
           />
         </div>
 
-                {/* Domain Scores by Risk Tier */}
-        <div className="card mb-8">
-          <h3 className="text-xl font-bold mb-4">🎯 Average Domain Scores by Risk Tier</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-4 py-2 text-left font-semibold">Risk Tier</th>
-                  <th className="px-4 py-2 text-right font-semibold">Stability</th>
-                  <th className="px-4 py-2 text-right font-semibold">Engagement</th>
-                  <th className="px-4 py-2 text-right font-semibold">Developmental</th>
-                  <th className="px-4 py-2 text-right font-semibold">Context</th>
-                </tr>
-              </thead>
-              <tbody>
-                {domainsByTier.map((row) => (
-                  <tr key={row.tier} className="border-t border-gray-200">
-                    <td className="px-4 py-2 font-medium">{row.tier}</td>
-                    <td className="px-4 py-2 text-right">{(row.stability || 0).toFixed(1)}</td>
-                    <td className="px-4 py-2 text-right">{(row.engagement || 0).toFixed(1)}</td>
-                    <td className="px-4 py-2 text-right">{(row.developmental || 0).toFixed(1)}</td>
-                    <td className="px-4 py-2 text-right">{(row.context || 0).toFixed(1)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
         {/* Geographic Risk Distribution */}
         <div className="mb-8">
           <h3 className="text-xl font-bold mb-2">🗺️ Geographic Risk Distribution</h3>
@@ -326,71 +279,14 @@ export default function RiskPage() {
             Risk concentration varies by region and county—identifying where to target intensive services
           </p>
 
-        {/* Regional Risk Profile */}
+        {/* Missouri County Heat Map */}
         <div className="card mb-8">
-          <h3 className="text-lg font-bold mb-2">Regional Variation</h3>
+          <h3 className="text-lg font-bold mb-2">High-Risk Children by County</h3>
           <p className="text-sm text-gray-600 mb-4">
-            Average risk scores and percentage of high-risk children by Missouri region
+            Shows percentage of children in each county who are high-risk (≥35 risk score) - darker red = more high-risk children, thick borders show urban counties
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-4 py-2 text-left font-semibold">Region</th>
-                  <th className="px-4 py-2 text-right font-semibold">Children (n)</th>
-                  <th className="px-4 py-2 text-right font-semibold">Avg Risk Score</th>
-                  <th className="px-4 py-2 text-right font-semibold">% High Risk</th>
-                </tr>
-              </thead>
-              <tbody>
-                {regionalRisk.map((row) => (
-                  <tr key={row.region} className="border-t border-gray-200">
-                    <td className="px-4 py-2 font-medium">{row.region}</td>
-                    <td className="px-4 py-2 text-right">{row.count.toLocaleString()}</td>
-                    <td className="px-4 py-2 text-right">
-                      <span className={`font-semibold ${
-                        row.avgRisk > 40 ? 'text-red-600' : row.avgRisk > 30 ? 'text-yellow-600' : 'text-green-600'
-                      }`}>
-                        {row.avgRisk.toFixed(1)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2 text-right">
-                      <span className={`font-semibold ${
-                        row.highRiskPct > 25 ? 'text-red-600' : row.highRiskPct > 15 ? 'text-yellow-600' : 'text-green-600'
-                      }`}>
-                        {row.highRiskPct.toFixed(1)}%
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <MissouriCountyMap data={countyAvgRiskAll} height={500} />
         </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="card">
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Risk Concentrates in Specific Counties</h3>
-              <p className="text-xs text-gray-600 mb-4">Top 15 counties show 2-3x higher average risk than statewide mean—targeting opportunity</p>
-              <BarChart
-                data={countyAvgRisk}
-                xKey="county"
-                yKey="avgRisk"
-                yAxisLabel="Average Risk Score (0-100)"
-                color="#2563eb"
-              />
-            </div>
-            <div className="card">
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Certain Programs Serve Highest-Need Children</h3>
-              <p className="text-xs text-gray-600 mb-4">Programs ranked by average risk—shows where intensive supports are needed most</p>
-              <BarChart
-                data={programRiskData}
-                xKey="program"
-                yKey="avgRisk"
-                yAxisLabel="Average Risk Score (0-100)"
-                color="#2563eb"
-              />
-            </div>
-          </div>
         </div>
 
         {/* Early Warning Indicators */}
@@ -407,7 +303,7 @@ export default function RiskPage() {
                 data={riskByPoverty}
                 xKey="band"
                 yKey="avgRisk"
-                yAxisLabel="Readiness Risk Score (0-100)"
+                yAxisLabel="Risk Score (0-100)"
                 color="#2563eb"
               />
             </div>
@@ -418,7 +314,7 @@ export default function RiskPage() {
                 data={screeningDistribution}
                 xKey="category"
                 yKey="avgRiskScore"
-                yAxisLabel="Average Readiness Score"
+                yAxisLabel="Average Risk Score"
                 color="#2563eb"
               />
             </div>
@@ -432,7 +328,7 @@ export default function RiskPage() {
                 data={attendanceDistribution}
                 xKey="category"
                 yKey="avgRiskScore"
-                yAxisLabel="Average Readiness Score"
+                yAxisLabel="Average Risk Score"
                 color="#2563eb"
               />
             </div>
@@ -444,10 +340,23 @@ export default function RiskPage() {
                 data={gapDistribution}
                 xKey="category"
                 yKey="avgRiskScore"
-                yAxisLabel="Average Readiness Score"
+                yAxisLabel="Average Risk Score"
                 color="#2563eb"
               />
             </div>
+          </div>
+
+          {/* Programs Analysis */}
+          <div className="card mt-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Certain Programs Serve Highest-Need Children</h3>
+            <p className="text-xs text-gray-600 mb-4">Programs ranked by average risk—target intensive supports where they're needed most</p>
+            <BarChart
+              data={programRiskData}
+              xKey="program"
+              yKey="avgRisk"
+              yAxisLabel="Average Risk Score (0-100)"
+              color="#2563eb"
+            />
           </div>
         </div>
 

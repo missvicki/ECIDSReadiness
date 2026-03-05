@@ -59,7 +59,7 @@ export default function OverviewPage() {
     { domain: 'Engagement', score: filteredData.reduce((sum, d) => sum + d.engagement_score, 0) / totalChildren },
     { domain: 'Developmental', score: filteredData.reduce((sum, d) => sum + d.developmental_score, 0) / totalChildren },
     { domain: 'Context', score: filteredData.reduce((sum, d) => sum + d.context_score, 0) / totalChildren },
-  ];
+  ].sort((a, b) => b.score - a.score);
 
   // High-risk children analysis
   const highRiskChildren = filteredData.filter(d => d.risk_tier === 'High');
@@ -98,7 +98,7 @@ export default function OverviewPage() {
             color="red"
           />
           <MetricCard
-            label="Avg Readiness Score"
+            label="Avg Risk Score"
             value={avgScore.toFixed(1)}
             help="Scale: 0-100, Higher = More Risk"
             icon="📊"
@@ -228,6 +228,7 @@ export default function OverviewPage() {
               data={domainScores}
               xKey="domain"
               yKey="score"
+              yAxisLabel="Risk Score (0-100)"
               color="#2563eb"
             />
           </div>
