@@ -88,6 +88,16 @@ RACE_OPTIONS = [
 MARITAL_STATUS = ["Divorced", "Separated", "Married", "Single"]
 EMPLOYMENT_STATUS = ["Employed", "Unemployed", "Part-time", "Not in Labor Force"]
 
+# Parent Education Levels (from lowest to highest)
+EDUCATION_LEVELS = [
+    "No high school diploma",
+    "High school diploma or equivalent",
+    "Some college, no degree",
+    "Associate's degree",
+    "Bachelor's degree",
+    "Graduate or professional degree"
+]
+
 # Program types with age windows
 PROGRAM_TYPES = {
     "Early Intervention": (0, 3),
@@ -483,6 +493,20 @@ for _, child in df_child.iterrows():
 
         emp_date = fake.date_between(start_date='-5y', end_date='today')
 
+        # Education Level - CORRELATED WITH RISK (as contextual variable)
+        # Higher risk families tend toward lower education, but not deterministic
+        if risk_tier == "High":
+            # Higher risk: more likely lower education
+            education_weights = [0.25, 0.35, 0.20, 0.10, 0.08, 0.02]
+        elif risk_tier == "Medium":
+            # Medium risk: moderate education distribution
+            education_weights = [0.12, 0.30, 0.25, 0.15, 0.13, 0.05]
+        else:
+            # Low risk: more likely higher education
+            education_weights = [0.05, 0.20, 0.25, 0.18, 0.22, 0.10]
+
+        highest_education = random.choices(EDUCATION_LEVELS, weights=education_weights)[0]
+
         related = {
             "Child DCN": child_dcn,
             "Child MOSIS ID": child_mosis_id,
@@ -498,7 +522,8 @@ for _, child in df_child.iterrows():
             "RelatedPerson RefSex.Description": rel_sex,
             "RelatedPerson HispanicLatinoEthnicity": "Yes" if rel_hispanic else "No",
             "RelatedPerson RefEmploymentStatus.Description": emp_status,
-            "RelatedPerson EmploymentStatusDate": emp_date.strftime("%Y-%m-%d")
+            "RelatedPerson EmploymentStatusDate": emp_date.strftime("%Y-%m-%d"),
+            "RelatedPerson HighestEducationLevel": highest_education
         }
 
         related_persons.append(related)
@@ -506,6 +531,34 @@ for _, child in df_child.iterrows():
 df_related = pd.DataFrame(related_persons)
 df_related.to_csv(OUTPUT_DIR / "RelatedPerson.csv", index=False)
 print(f"   ✓ Generated {len(df_related):,} related persons")
+
+# Derive HighestParentEducationLevel for each child
+print("   Deriving highest parent education level for each child...")
+education_level_order = {level: idx for idx, level in enumerate(EDUCATION_LEVELS)}
+
+highest_parent_education = []
+for _, child in df_child.iterrows():
+    child_dcn = child["Child DCN"]
+    # Get all guardians for this child
+    child_guardians = df_related[df_related["Child DCN"] == child_dcn]
+
+    if len(child_guardians) > 0:
+        # Get the highest education level among all guardians
+        guardian_educations = child_guardians["RelatedPerson HighestEducationLevel"].tolist()
+        # Find the highest (max index in EDUCATION_LEVELS)
+        highest_ed = max(guardian_educations, key=lambda x: education_level_order.get(x, 0))
+    else:
+        # Fallback (shouldn't happen)
+        highest_ed = "High school diploma or equivalent"
+
+    highest_parent_education.append(highest_ed)
+
+# Add to Child dataframe
+df_child["HighestParentEducationLevel"] = highest_parent_education
+
+# Re-save Child.csv with new field
+df_child.to_csv(OUTPUT_DIR / "Child.csv", index=False)
+print(f"   ✓ Added HighestParentEducationLevel to Child.csv")
 
 # ============================================================================
 # 3. GENERATE CHILDPARTICIPATION.CSV (with specific distribution rules)
