@@ -23,8 +23,8 @@ random.seed(42)
 
 # Configuration
 NUM_CHILDREN = 5000
-OUTPUT_DIR = Path("synthetic_data")
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR = Path("../dashboard-react/public/data/ecids")
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 print("=" * 70)
 print("ECIDS SYNTHETIC DATA GENERATION")
@@ -34,7 +34,7 @@ print()
 
 # Load reference data from Excel
 print("Loading reference data from Excel...")
-EXCEL_FILE = Path("/Users/vickinomwesigwa/Documents/ECIDS-Readiness/Flat File Templates.xlsx")
+EXCEL_FILE = Path("../archive/templates/Flat File Templates.xlsx")
 df_languages = pd.read_excel(EXCEL_FILE, sheet_name='Language')
 df_relationships = pd.read_excel(EXCEL_FILE, sheet_name='PersonRelationshipType')
 
