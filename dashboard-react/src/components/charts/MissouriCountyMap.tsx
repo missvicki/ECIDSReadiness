@@ -5,7 +5,8 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
 interface CountyData {
   county: string;
-  avgRisk: number;
+  avgRisk?: number;
+  value?: number;  // Generic value for the selected metric
   count: number;
   highRiskPct?: number;
 }
@@ -13,6 +14,8 @@ interface CountyData {
 interface MissouriCountyMapProps {
   data: CountyData[];
   height?: number;
+  onCountyClick?: (county: string) => void;
+  metricLabel?: string;  // Label for the legend (e.g., "Multiple Indicators", "High-Risk Children")
 }
 
 // Major urban counties in Missouri
@@ -29,7 +32,12 @@ const URBAN_COUNTIES = [
   'Cass',
 ];
 
-const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 500 }) => {
+const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({
+  data,
+  height = 500,
+  onCountyClick,
+  metricLabel = 'Support Needs'
+}) => {
   const [tooltipContent, setTooltipContent] = useState('');
   const [mounted, setMounted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -65,12 +73,12 @@ const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 50
   // Create a map for quick lookup
   const dataMap = new Map(data.map(d => [d.county.toLowerCase(), d]));
 
-  // Color scale based on % high-risk children
-  const getColor = (highRiskPct: number | undefined) => {
-    if (highRiskPct === undefined) return '#e5e7eb'; // gray for no data
-    if (highRiskPct >= 30) return '#ef4444'; // red - very high concentration
-    if (highRiskPct >= 20) return '#f59e0b'; // amber - high concentration
-    if (highRiskPct >= 10) return '#fbbf24'; // yellow - moderate concentration
+  // Color scale based on percentage metric
+  const getColor = (metricValue: number | undefined) => {
+    if (metricValue === undefined) return '#e5e7eb'; // gray for no data
+    if (metricValue >= 30) return '#ef4444'; // red - very high concentration
+    if (metricValue >= 20) return '#f59e0b'; // amber - high concentration
+    if (metricValue >= 10) return '#fbbf24'; // yellow - moderate concentration
     return '#10b981'; // green - low concentration
   };
 
@@ -128,7 +136,9 @@ const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 50
                                  Array.from(dataMap.entries()).find(([key]) =>
                                    key.toLowerCase() === countyName?.toLowerCase()
                                  )?.[1];
-              const fillColor = getColor(countyData?.highRiskPct);
+              // Use 'value' if available (for metric-specific coloring), otherwise fall back to highRiskPct
+              const metricValue = countyData?.value !== undefined ? countyData.value : countyData?.highRiskPct;
+              const fillColor = getColor(metricValue);
               const isUrbanCounty = isUrban(countyName || '');
 
               return (
@@ -148,9 +158,9 @@ const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 50
                     pressed: { outline: 'none' },
                   }}
                   onMouseEnter={() => {
-                    if (countyData && countyData.highRiskPct !== undefined) {
+                    if (countyData && metricValue !== undefined) {
                       setTooltipContent(
-                        `${countyName} County${isUrbanCounty ? ' (Urban)' : ' (Rural)'}\nHigh-Risk: ${countyData.highRiskPct.toFixed(1)}%\nChildren: ${countyData.count.toLocaleString()}`
+                        `${countyName} County${isUrbanCounty ? ' (Urban)' : ' (Rural)'}\n${metricLabel}: ${metricValue.toFixed(1)}%\nChildren: ${countyData.count.toLocaleString()}`
                       );
                     } else {
                       setTooltipContent(`${countyName} County\nNo data`);
@@ -158,6 +168,11 @@ const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 50
                   }}
                   onMouseLeave={() => {
                     setTooltipContent('');
+                  }}
+                  onClick={() => {
+                    if (onCountyClick && countyName) {
+                      onCountyClick(countyName);
+                    }
                   }}
                 />
               );
@@ -175,7 +190,7 @@ const MissouriCountyMap: React.FC<MissouriCountyMapProps> = ({ data, height = 50
 
       {/* Legend */}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm">
-        <div className="font-semibold text-gray-700">% High-Risk Children:</div>
+        <div className="font-semibold text-gray-700">% {metricLabel}:</div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded" style={{ backgroundColor: '#10b981' }}></div>
           <span>&lt;10%</span>

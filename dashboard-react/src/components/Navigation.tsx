@@ -7,8 +7,10 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { href: '/', label: '📍 Overview', exact: true },
   { href: '/cohort', label: '👥 Cohort Explorer' },
-  { href: '/risk', label: '📊 Risk Distribution' },
-  { href: '/simulation', label: '🔮 Predictive Simulation' },
+  { href: '/indicator-distribution', label: '🗺️ Indicator Distribution' },
+  // { href: '/risk', label: '📊 Risk Distribution' }, // Hidden - replaced by Indicator Distribution
+  { href: '/longitudinal-outcomes', label: '🔗 Longitudinal Pathways' },
+  // { href: '/simulation', label: '🔮 Predictive Simulation' }, // Hidden - replaced by Longitudinal Outcomes
   { href: '/interventions', label: '🚨 Risk-to-Response' },
   { href: '/methodology', label: '📚 Data Methodology' },
   { href: '/use-cases', label: '💡 Use Cases' },

@@ -32,7 +32,7 @@ export default function DonutChart({
 
   if (!mounted) {
     return (
-      <div className="card">
+      <div>
         {title && <h3 className="text-lg font-semibold mb-4 text-gray-800">{title}</h3>}
         <div style={{ height }} className="flex items-center justify-center bg-gray-50 rounded-lg">
           <div className="animate-pulse text-gray-400">Loading chart...</div>
@@ -43,7 +43,7 @@ export default function DonutChart({
 
   if (!data || data.length === 0) {
     return (
-      <div className="card">
+      <div>
         {title && <h3 className="text-lg font-semibold mb-4 text-gray-800">{title}</h3>}
         <div style={{ height }} className="flex items-center justify-center bg-gray-50 rounded-lg">
           <p className="text-gray-400">No data available</p>
@@ -53,7 +53,7 @@ export default function DonutChart({
   }
 
   return (
-    <div className="card">
+    <div>
       {title && <h3 className="text-lg font-semibold mb-4 text-gray-800">{title}</h3>}
       <div style={{ width: '100%', height }}>
         <ResponsiveContainer>
@@ -62,12 +62,11 @@ export default function DonutChart({
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={80}
-              outerRadius={120}
+              innerRadius={60}
+              outerRadius={90}
               paddingAngle={2}
               dataKey={valueKey}
               nameKey={nameKey}
-              label={(entry) => `${entry[nameKey]}: ${entry[valueKey]}`}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />

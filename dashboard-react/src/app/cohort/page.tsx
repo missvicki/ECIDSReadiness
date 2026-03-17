@@ -11,8 +11,6 @@ export default function CohortExplorerPage() {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     county: 'All Counties',
-    district: 'All Districts',
-    riskTier: 'All Risk Tiers',
     povertyLevel: 'All Poverty Levels',
   });
   const [searchTerm, setSearchTerm] = useState('');
@@ -82,28 +80,27 @@ export default function CohortExplorerPage() {
     }
   };
 
-  const getTopRiskDrivers = (child: ChildWithRisk) => {
-    const drivers: string[] = [];
-    if (child.num_enrollment_gaps > 1) drivers.push(`${child.num_enrollment_gaps} enrollment gaps`);
-    if (child.num_screenings_completed < 4) drivers.push(`Missed ${6 - child.num_screenings_completed} screenings`);
-    if (child.avg_attendance_days < 80) drivers.push('Low attendance');
-    if (child.deep_poverty) drivers.push('Deep poverty');
-    if (child.num_household_stressors > 2) drivers.push(`${child.num_household_stressors} household stressors`);
-    return drivers.slice(0, 3).join(', ') || 'No major drivers';
+  const getSupportIndicators = (child: ChildWithRisk) => {
+    const indicators: string[] = [];
+    if (child.num_enrollment_gaps > 1) indicators.push(`${child.num_enrollment_gaps} enrollment gaps`);
+    if (child.num_screenings_completed < 4) indicators.push(`Missed screenings`);
+    if (child.avg_attendance_days < 80) indicators.push('Low attendance');
+    if (child.deep_poverty) indicators.push('Deep poverty');
+    if (child.num_household_stressors > 2) indicators.push(`${child.num_household_stressors} household stressors`);
+    return indicators.slice(0, 3).join(', ') || 'On track';
   };
 
   const exportToCSV = () => {
-    const headers = ['Child DCN', 'County', 'Risk Score', 'Risk Tier', 'Stability', 'Engagement', 'Developmental', 'Context', 'Top Risk Drivers'];
+    const headers = ['Child DCN', 'County', 'Support Category', 'Program Stability', 'Participation & Attendance', 'Developmental Indicators', 'Family Context', 'Key Indicators'];
     const rows = sortedData.map(child => [
       child['Child DCN'],
       child.AddressCountyName,
-      child.composite_risk_score.toFixed(1),
-      child.risk_tier,
+      child.support_band,
       child.stability_score.toFixed(1),
       child.engagement_score.toFixed(1),
       child.developmental_score.toFixed(1),
       child.context_score.toFixed(1),
-      `"${getTopRiskDrivers(child)}"`
+      `"${getSupportIndicators(child)}"`
     ]);
 
     const csv = [headers, ...rows].map(row => row.join(',')).join('\n');
@@ -115,11 +112,12 @@ export default function CohortExplorerPage() {
     a.click();
   };
 
-  const getRiskBadgeColor = (tier: string) => {
-    switch (tier) {
-      case 'High': return 'bg-red-100 text-red-800 border-red-300';
-      case 'Moderate': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
-      case 'Low': return 'bg-green-100 text-green-800 border-green-300';
+  const getSupportBadgeColor = (band: string) => {
+    switch (band) {
+      case 'Intensive Support': return 'bg-orange-100 text-orange-800 border-orange-300';
+      case 'Targeted Support': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+      case 'Monitor': return 'bg-blue-100 text-blue-800 border-blue-300';
+      case 'On Track': return 'bg-green-100 text-green-800 border-green-300';
       default: return 'bg-gray-100 text-gray-800 border-gray-300';
     }
   };
@@ -165,9 +163,38 @@ export default function CohortExplorerPage() {
           <div className="card mb-6">
             <h2 className="text-xl font-bold mb-3">Cohort Explorer</h2>
             <p className="text-gray-700 leading-relaxed">
-              <strong>Drill down into individual child-level records</strong> to identify specific children for targeted outreach and intervention.
-              Filter by risk tier, county, or poverty level, then export lists for case management and program enrollment.
+              <strong>Identify groups of children who may benefit from additional outreach or services.</strong> Filter by county or poverty level,
+              then export lists for case management and program enrollment.
             </p>
+          </div>
+
+          {/* Cohort Summary */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <h3 className="text-sm font-semibold text-blue-900 mb-3">Current Cohort Summary</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div>
+                <div className="text-gray-600">Children in Filter</div>
+                <div className="text-2xl font-bold text-blue-900">{sortedData.length.toLocaleString()}</div>
+              </div>
+              <div>
+                <div className="text-gray-600">Targeted Support</div>
+                <div className="text-2xl font-bold text-yellow-700">
+                  {sortedData.filter(c => c.support_band === 'Targeted Support').length.toLocaleString()}
+                </div>
+              </div>
+              <div>
+                <div className="text-gray-600">Intensive Support</div>
+                <div className="text-2xl font-bold text-orange-700">
+                  {sortedData.filter(c => c.support_band === 'Intensive Support').length.toLocaleString()}
+                </div>
+              </div>
+              <div>
+                <div className="text-gray-600">Total Targeted+</div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {sortedData.filter(c => c.support_band === 'Targeted Support' || c.support_band === 'Intensive Support').length.toLocaleString()}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -191,39 +218,36 @@ export default function CohortExplorerPage() {
                   </th>
                   <th
                     className="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100"
-                    onClick={() => handleSort('composite_risk_score')}
+                    onClick={() => handleSort('support_band')}
                   >
-                    Risk Score {sortColumn === 'composite_risk_score' && (sortDirection === 'asc' ? '↑' : '↓')}
-                  </th>
-                  <th className="px-4 py-3 text-center font-semibold text-gray-700">
-                    Risk Tier
+                    Support Category {sortColumn === 'support_band' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th
                     className="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('stability_score')}
                   >
-                    Stability {sortColumn === 'stability_score' && (sortDirection === 'asc' ? '↑' : '↓')}
+                    Program Stability {sortColumn === 'stability_score' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th
                     className="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('engagement_score')}
                   >
-                    Engagement {sortColumn === 'engagement_score' && (sortDirection === 'asc' ? '↑' : '↓')}
+                    Participation & Attendance {sortColumn === 'engagement_score' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th
                     className="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('developmental_score')}
                   >
-                    Developmental {sortColumn === 'developmental_score' && (sortDirection === 'asc' ? '↑' : '↓')}
+                    Developmental Indicators {sortColumn === 'developmental_score' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th
                     className="px-4 py-3 text-center font-semibold text-gray-700 cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('context_score')}
                   >
-                    Context {sortColumn === 'context_score' && (sortDirection === 'asc' ? '↑' : '↓')}
+                    Family Context {sortColumn === 'context_score' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th className="px-4 py-3 text-left font-semibold text-gray-700">
-                    Top Risk Drivers
+                    Key Indicators
                   </th>
                 </tr>
               </thead>
@@ -235,17 +259,16 @@ export default function CohortExplorerPage() {
                   >
                     <td className="px-4 py-3 font-mono text-xs">{child['Child DCN']}</td>
                     <td className="px-4 py-3">{child.AddressCountyName}</td>
-                    <td className="px-4 py-3 text-center font-semibold">{child.composite_risk_score.toFixed(1)}</td>
                     <td className="px-4 py-3 text-center">
-                      <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold border ${getRiskBadgeColor(child.risk_tier)}`}>
-                        {child.risk_tier}
+                      <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold border ${getSupportBadgeColor(child.support_band)}`}>
+                        {child.support_band}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center text-gray-600">{child.stability_score.toFixed(0)}</td>
                     <td className="px-4 py-3 text-center text-gray-600">{child.engagement_score.toFixed(0)}</td>
                     <td className="px-4 py-3 text-center text-gray-600">{child.developmental_score.toFixed(0)}</td>
                     <td className="px-4 py-3 text-center text-gray-600">{child.context_score.toFixed(0)}</td>
-                    <td className="px-4 py-3 text-xs text-gray-600">{getTopRiskDrivers(child)}</td>
+                    <td className="px-4 py-3 text-xs text-gray-600">{getSupportIndicators(child)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -281,9 +304,9 @@ export default function CohortExplorerPage() {
           <h3 className="text-lg font-bold mb-2">💡 So What?</h3>
           <p className="text-gray-800">
             <strong>This table bridges analytics to action.</strong> Case managers, coordinators, and home visitors can identify specific
-            at-risk children by name, understand their primary risk drivers, and export targeted lists for intensive outreach, re-enrollment,
-            or service referrals. The ability to drill down from population-level patterns to individual child records makes the risk index
-            operationally useful—not just a dashboard metric, but a daily workflow tool. Know who needs help, why they need it, and where to find them.
+            children by name, understand their support indicators, and export targeted lists for intensive outreach, re-enrollment,
+            or service referrals. The ability to drill down from population-level patterns to individual child records makes this system
+            operationally useful—not just a dashboard metric, but a daily workflow tool. Know who may need help, why they may need it, and where to find them.
           </p>
         </div>
       </Container>
