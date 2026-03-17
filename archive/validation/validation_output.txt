@@ -1,0 +1,238 @@
+
+================================================================================
+COMPREHENSIVE THREE-LAYER VALIDATION
+ECIDS → K-12 Longitudinal Data Quality Assessment
+================================================================================
+
+Loading datasets...
+✓ Loaded 5,000 ECIDS children
+✓ Loaded 12,708 K-12 student-years
+
+================================================================================
+LAYER 1: ECIDS DATASET INTEGRITY VALIDATION
+================================================================================
+
+1.1 Risk Score Validation
+----------------------------------------
+  composite_risk_score:
+    Range: 4.00 - 61.56
+    Mean: 23.35
+    Missing: 0
+  stability_score:
+    Range: 0.00 - 75.00
+    Mean: 12.31
+    Missing: 0
+  engagement_score:
+    Range: 0.00 - 83.75
+    Mean: 31.93
+    Missing: 0
+  developmental_score:
+    Range: 0.00 - 75.00
+    Mean: 20.77
+    Missing: 0
+  context_score:
+    Range: 20.00 - 95.00
+    Mean: 32.41
+    Missing: 0
+
+1.2 Risk Tier Distribution
+----------------------------------------
+  Low: 58.5%
+  Moderate: 40.0%
+  High: 1.5%
+
+1.3 Demographics Completeness
+----------------------------------------
+  FirstName: 100.0% complete
+  LastName: 100.0% complete
+  BirthDate: 100.0% complete
+  RefSex.Description: 100.0% complete
+  RefRace.Description: 100.0% complete
+  HighestParentEducationLevel: 100.0% complete
+
+1.4 Participation Data Coverage
+----------------------------------------
+  Children with participation records: 5,000 (100.0%)
+  Total participation episodes: 9,633
+  Avg episodes per child: 1.9
+
+1.5 Screening and Outcome Data
+----------------------------------------
+  Children with screenings: 4,981 (99.6%)
+  Children with COS outcomes: 5,000 (100.0%)
+
+1.6 Parent Education Distribution
+----------------------------------------
+  Some college, no degree: 24.1%
+  Bachelor's degree: 23.0%
+  Associate's degree: 18.4%
+  High school diploma or equivalent: 18.0%
+  Graduate or professional degree: 10.4%
+  No high school diploma: 6.1%
+
+✓ Layer 1 validation complete
+
+================================================================================
+LAYER 2: K-12 DATASET INTEGRITY VALIDATION
+================================================================================
+
+2.1 Grade Code Validation (Missouri Codes)
+----------------------------------------
+  Expected grades: ['PK', 'K', '01', '02', '03']
+  Actual grades: ['01', '02', '03', 'K', 'PK']
+  ✓ All grades use Missouri codes
+
+2.2 Grade Distribution by School Year
+----------------------------------------
+StudentGradeLevel    01    02    03     K    PK
+CurrentSchoolYear                              
+2024               1168    36     0    56  2147
+2025                 19  1172    23  1231  2234
+2026               1155    18  1200  1256   993
+
+  Total student-years: 12,708
+  Grade 3 students (target): 1,223
+
+2.3 Longitudinal Progression Validation
+----------------------------------------
+  Backwards progressions: 0 (should be 0)
+  Retentions (repeated grade): 2120
+  Grade skips: 131
+
+2.4 Assessment Outcome Fields Validation
+----------------------------------------
+  ✓ ScaleScore: 14,668 records (100.0%)
+  ✓ PerformanceLevel: 14,668 records (100.0%)
+  ✓ Grade3ReadingBand: 1,223 Grade 3 Reading records
+
+  WIDA Assessment:
+    Grades included: ['01', '02', '03', 'K']
+    ✓ K-03 only (no PK)
+    ✓ CompositeScore: 700 records
+
+2.5 Attendance Rate Distribution
+----------------------------------------
+  Mean attendance: 89.6%
+  Median attendance: 89.1%
+  Range: 72.5% - 100.0%
+
+2.6 Kindergarten Readiness Distribution
+----------------------------------------
+  Y: 1,680 (66.1%)
+  N: 863 (33.9%)
+
+2.7 Reading Success Plan Distribution
+----------------------------------------
+  NO RSP: 4,078 (85.1%)
+  REC RSP: 713 (14.9%)
+
+✓ Layer 2 validation complete
+
+================================================================================
+LAYER 3: ECIDS → K-12 LONGITUDINAL LINKAGE VALIDATION
+================================================================================
+
+3.1 StateID Referential Integrity
+----------------------------------------
+  ECIDS children: 5,000
+  K-12 unique students: 5,000
+  K-12 students NOT in ECIDS: 0
+  ✓ All K-12 students exist in ECIDS
+
+3.2 Demographic Consistency (ECIDS ↔ K-12)
+----------------------------------------
+  First name mismatches: 0 (0.00%)
+  Birth date mismatches: 0 (0.00%)
+
+3.3 Risk Score → K-12 Outcome Correlations
+----------------------------------------
+  Engagement score vs Attendance: r = -0.917
+    Expected: Negative (higher risk → lower attendance)
+  Developmental score vs K Readiness: r = -0.269
+    Expected: Negative (higher risk → less likely ready)
+  Developmental score vs Grade 3 Reading: r = -0.866
+    Expected: Negative (higher risk → lower reading scores)
+
+3.4 Longitudinal Narrative Examples
+----------------------------------------
+
+  Low Risk Example:
+    Risk scores: Composite=23.1, Dev=35.0, Eng=17.5
+    K-12 progression: 01 → 03 → 03
+    Ever received RSP: True
+
+  Moderate Risk Example:
+    Risk scores: Composite=36.7, Dev=35.0, Eng=51.7
+    K-12 progression: PK → PK → K
+    K Readiness: Y
+
+  High Risk Example:
+    Risk scores: Composite=53.1, Dev=35.0, Eng=63.3
+    K-12 progression: 01 → 02 → 03
+    Ever received RSP: True
+
+3.5 Parent Education as Contextual Variable
+----------------------------------------
+  Kindergarten Readiness Rate by Parent Education:
+    Associate's degree: 69.1%
+    Bachelor's degree: 74.8%
+    Graduate or professional degree: 80.9%
+    High school diploma or equivalent: 57.2%
+    No high school diploma: 46.2%
+    Some college, no degree: 60.1%
+
+✓ Layer 3 validation complete
+
+================================================================================
+RESEARCH MODEL ALIGNMENT ASSESSMENT
+================================================================================
+
+1. Harvard Cumulative Risk Model
+----------------------------------------
+   Citation: Sameroff, A. J., Seifer, R., Barocas, R., Zax, M., & Greenspan, S. (1987).
+   Intelligence quotient scores of 4-year-old children: Social-environmental risk factors.
+   Pediatrics, 79(3), 343-350.
+
+  Kindergarten Readiness by Cumulative Risk Factor Count:
+    0 risk factors: 79.4% ready (n=704)
+    1 risk factors: 66.4% ready (n=1027)
+    2 risk factors: 56.1% ready (n=611)
+    3 risk factors: 47.7% ready (n=176)
+    4 risk factors: 47.6% ready (n=21)
+    5 risk factors: 50.0% ready (n=4)
+
+  Correlation: r = -0.207
+  Expected: Negative (more risk factors → lower readiness)
+
+2. Heckman Early Investment ROI Model
+----------------------------------------
+   Citation: Heckman, J. J. (2006). Skill formation and the economics of investing
+   in disadvantaged children. Science, 312(5782), 1900-1902.
+
+Traceback (most recent call last):
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/venv/lib/python3.13/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7096, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'num_participation_episodes'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/comprehensive_validation_report.py", line 1181, in <module>
+    main()
+    ~~~~^^
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/comprehensive_validation_report.py", line 1166, in main
+    validator.validate_research_alignment()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/comprehensive_validation_report.py", line 610, in validate_research_alignment
+    df_investment['num_participation_episodes'] = df_investment['num_participation_episodes'].fillna(0)
+                                                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/venv/lib/python3.13/site-packages/pandas/core/frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/vickinomwesigwa/Documents/ECIDS-Readiness/venv/lib/python3.13/site-packages/pandas/core/indexes/base.py", line 3819, in get_loc
+    raise KeyError(key) from err
+KeyError: 'num_participation_episodes'

@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "generated": "2026-03-16T11:58:02.645244",
+    "dataset_version": "1.0",
+    "total_ecids_children": 5000,
+    "total_k12_student_years": 12709,
+    "grade3_count": 1227
+  },
+  "layer1_ecids": {
+    "composite_risk_score_range": "4.00-61.56",
+    "composite_risk_score_mean": "23.35",
+    "composite_risk_score_complete": true,
+    "stability_score_range": "0.00-75.00",
+    "stability_score_mean": "12.31",
+    "stability_score_complete": true,
+    "engagement_score_range": "0.00-83.75",
+    "engagement_score_mean": "31.93",
+    "engagement_score_complete": true,
+    "developmental_score_range": "0.00-75.00",
+    "developmental_score_mean": "20.77",
+    "developmental_score_complete": true,
+    "context_score_range": "20.00-95.00",
+    "context_score_mean": "32.41",
+    "context_score_complete": true,
+    "risk_tier_distribution": {
+      "Low": 0.585,
+      "Moderate": 0.4002,
+      "High": 0.0148
+    },
+    "FirstName_complete": true,
+    "LastName_complete": true,
+    "BirthDate_complete": true,
+    "RefSex.Description_complete": true,
+    "RefRace.Description_complete": true,
+    "HighestParentEducationLevel_complete": true,
+    "participation_coverage": 100.0,
+    "avg_episodes_per_child": 1.9266,
+    "screening_coverage": 99.62,
+    "outcome_coverage": 100.0,
+    "parent_education_distribution": {
+      "Some college, no degree": 0.2414,
+      "Bachelor's degree": 0.2304,
+      "Associate's degree": 0.1838,
+      "High school diploma or equivalent": 0.18,
+      "Graduate or professional degree": 0.1036,
+      "No high school diploma": 0.0608
+    }
+  },
+  "layer2_k12": {
+    "invalid_grades": [],
+    "grade_distribution": {
+      "01": {
+        "2024": 1179,
+        "2025": 17,
+        "2026": 1156
+      },
+      "02": {
+        "2024": 29,
+        "2025": 1175,
+        "2026": 20
+      },
+      "03": {
+        "2024": 0,
+        "2025": 22,
+        "2026": 1205
+      },
+      "K": {
+        "2024": 52,
+        "2025": 1229,
+        "2026": 1257
+      },
+      "PK": {
+        "2024": 2155,
+        "2025": 2223,
+        "2026": 990
+      }
+    },
+    "grade3_count": 1227,
+    "backwards_progression": 0,
+    "retention_count": 2087,
+    "skip_count": 126,
+    "map_ScaleScore_populated": true,
+    "map_PerformanceLevel_populated": true,
+    "map_Grade3ReadingBand_populated": true,
+    "wida_has_pk": false,
+    "wida_composite_populated": true,
+    "mean_attendance": 84.2920724461365,
+    "median_attendance": 84.52991452991454,
+    "k_readiness_distribution": {
+      "Y": 1699,
+      "N": 839
+    },
+    "rsp_distribution": {
+      "NO RSP": 4112,
+      "REC RSP": 691
+    }
+  },
+  "layer3_linkage": {
+    "orphaned_k12_records": 0,
+    "name_consistency": true,
+    "dob_consistency": true,
+    "corr_engagement_attendance": -0.6128293165214438,
+    "corr_dev_readiness": -0.24439044788887254,
+    "corr_dev_grade3reading": -0.8683840922018925,
+    "longitudinal_narratives": [
+      {
+        "tier": "Low",
+        "composite_risk": 20.0,
+        "developmental": 0.0,
+        "engagement": 40.0,
+        "k12_years": 3,
+        "grades": [
+          "01",
+          "02",
+          "03"
+        ],
+        "rsp_ever": true
+      },
+      {
+        "tier": "Moderate",
+        "composite_risk": 30.0,
+        "developmental": 40.0,
+        "engagement": 40.0,
+        "k12_years": 2,
+        "grades": [
+          "K",
+          "02"
+        ],
+        "k_readiness": "N",
+        "rsp_ever": true
+      },
+      {
+        "tier": "High",
+        "composite_risk": 55.04166666666667,
+        "developmental": 75.0,
+        "engagement": 69.16666666666667,
+        "k12_years": 2,
+        "grades": [
+          "PK",
+          "PK"
+        ]
+      }
+    ],
+    "k_readiness_by_parent_ed": {
+      "Associate's degree": 68.57142857142857,
+      "Bachelor's degree": 77.55102040816327,
+      "Graduate or professional degree": 79.92565055762083,
+      "High school diploma or equivalent": 56.87645687645687,
+      "No high school diploma": 40.909090909090914,
+      "Some college, no degree": 63.32236842105263
+    }
+  },
+  "research_alignment": {
+    "harvard_cumulative_risk_correlation": -0.2095210374536149,
+    "harvard_alignment": "Moderate",
+    "heckman_participation_effect": -8.074534161490682,
+    "heckman_alignment": "Weak",
+    "attendance_works_correlation": 0.48732665734606156,
+    "attendance_works_alignment": "Strong",
+    "attendance_reading_correlation": 0.25442090261103106,
+    "chapin_hall_correlation": 0.18475453445438683,
+    "chapin_hall_alignment": "Moderate",
+    "ecids_slds_linkage_rate": 99.98,
+    "ecids_slds_complete_pathway_rate": 100.0,
+    "ecids_slds_alignment": "Strong"
+  },
+  "summary": {
+    "all_layers_pass": true,
+    "key_findings": [
+      "All ECIDS risk scores within expected ranges with complete coverage",
+      "All K-12 records use valid Missouri grade codes",
+      "Zero orphaned K-12 records - 100% referential integrity",
+      "Strong negative correlations between risk scores and outcomes as expected",
+      "Longitudinal pathways successfully established from ECIDS to K-12"
+    ],
+    "critical_metrics": {
+      "ecids_children": 5000,
+      "k12_student_years": 12709,
+      "grade3_students": 1227,
+      "backwards_progressions": 0,
+      "orphaned_k12_records": 0,
+      "correlation_engagement_attendance": -0.6128293165214438,
+      "correlation_dev_k_readiness": -0.24439044788887254,
+      "correlation_dev_grade3_reading": -0.8683840922018925
+    }
+  }
+}
