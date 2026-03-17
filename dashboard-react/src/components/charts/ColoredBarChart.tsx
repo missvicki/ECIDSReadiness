@@ -1,20 +1,17 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { BarChart as RechartsBar, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart as RechartsBar, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-interface BarChartProps {
-  data: any[];
-  xKey: string;
-  yKey: string;
+interface ColoredBarChartProps {
+  data: Array<{ category: string; value: number; color: string }>;
   title?: string;
-  color?: string;
   height?: number;
   yAxisLabel?: string;
   horizontal?: boolean;
 }
 
-export default function BarChart({ data, xKey, yKey, title, color = '#8b5cf6', height = 400, yAxisLabel, horizontal = false }: BarChartProps) {
+export default function ColoredBarChart({ data, title, height = 400, yAxisLabel, horizontal = false }: ColoredBarChartProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,43 +41,44 @@ export default function BarChart({ data, xKey, yKey, title, color = '#8b5cf6', h
   }
 
   return (
-    <div className="card">
-      {title && <h3 className="text-lg font-semibold mb-4 text-gray-800">{title}</h3>}
-      <div style={{ width: '100%', height }}>
-        <ResponsiveContainer>
+    <div className="card" style={{ width: '100%' }}>
+      {title && <h3 className="text-lg font-semibold mb-3 text-gray-800">{title}</h3>}
+      <div style={{ width: '100%', height, position: 'relative' }}>
+        <ResponsiveContainer width="100%" height="100%">
           <RechartsBar
             data={data}
             layout={horizontal ? "vertical" : "horizontal"}
-            margin={{ top: 5, right: 20, left: horizontal ? 100 : 20, bottom: horizontal ? 5 : 80 }}
+            margin={{ top: 10, right: 20, left: 5, bottom: horizontal ? 10 : 80 }}
+            barCategoryGap="20%"
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             {horizontal ? (
               <>
                 <XAxis
                   type="number"
-                  tick={{ fill: '#6b7280', fontSize: 12 }}
+                  tick={{ fill: '#6b7280', fontSize: 11 }}
                   label={yAxisLabel ? {
                     value: yAxisLabel,
                     position: 'insideBottom',
                     offset: -5,
                     style: {
                       fill: '#6b7280',
-                      fontSize: 12,
+                      fontSize: 11,
                       textAnchor: 'middle'
                     }
                   } : undefined}
                 />
                 <YAxis
                   type="category"
-                  dataKey={xKey}
-                  tick={{ fill: '#6b7280', fontSize: 12 }}
-                  width={90}
+                  dataKey="category"
+                  tick={{ fill: '#6b7280', fontSize: 11 }}
+                  width={150}
                 />
               </>
             ) : (
               <>
                 <XAxis
-                  dataKey={xKey}
+                  dataKey="category"
                   tick={{ fill: '#6b7280', fontSize: 12 }}
                   angle={-45}
                   textAnchor="end"
@@ -111,10 +109,14 @@ export default function BarChart({ data, xKey, yKey, title, color = '#8b5cf6', h
               }}
             />
             <Bar
-              dataKey={yKey}
-              fill={color}
-              radius={horizontal ? [0, 8, 8, 0] : [8, 8, 0, 0]}
-            />
+              dataKey="value"
+              radius={horizontal ? [0, 6, 6, 0] : [6, 6, 0, 0]}
+              maxBarSize={60}
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Bar>
           </RechartsBar>
         </ResponsiveContainer>
       </div>

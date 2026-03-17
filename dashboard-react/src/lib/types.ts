@@ -37,6 +37,7 @@ export interface Child {
 export interface ChildWithRisk extends Child {
   composite_risk_score: number;
   risk_tier: 'Low' | 'Moderate' | 'High';
+  support_band: 'On Track' | 'Monitor' | 'Targeted Support' | 'Intensive Support';
   stability_score: number;
   engagement_score: number;
   developmental_score: number;
